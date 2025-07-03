@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FileEdit } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import * as Diff from "diff";
 
 type DiffMode =
@@ -23,10 +24,13 @@ export const AdvancedTextDiff = ({
   oldText,
   newText,
   diffMode = "lines",
-  title = "텍스트 변경 사항",
+  title,
 }: Props) => {
+  const { t } = useTranslation(['ui']);
   const [currentMode, setCurrentMode] = useState<DiffMode>(diffMode);
   const [isExpanded, setIsExpanded] = useState(false);
+  
+  const displayTitle = title || t('ui:diff.changes');
 
   const getDiffResults = () => {
     switch (currentMode) {
@@ -65,13 +69,13 @@ export const AdvancedTextDiff = ({
 
     if (part.added) {
       colorClasses = "bg-green-100 text-green-800 border-l-2 border-green-400";
-      title = "추가됨";
+      title = t('ui:diff.added');
     } else if (part.removed) {
       colorClasses = "bg-red-100 text-red-800 border-l-2 border-red-400";
-      title = "삭제됨";
+      title = t('ui:diff.deleted');
     } else {
       colorClasses = "text-gray-700";
-      title = "변경 없음";
+      title = t('ui:diff.same');
     }
 
     // 긴 텍스트는 줄바꿈 허용
@@ -100,12 +104,12 @@ export const AdvancedTextDiff = ({
 
   const getModeLabel = (mode: string) => {
     const labels = {
-      lines: "라인 단위",
-      trimmedLines: "라인 단위 (공백 무시)",
-      chars: "문자 단위",
-      words: "단어 단위",
-      wordsWithSpace: "단어+공백 단위",
-      sentences: "문장 단위",
+      lines: t('ui:diff.lines'),
+      trimmedLines: t('ui:diff.trimmedLines'),
+      chars: t('ui:diff.chars'),
+      words: t('ui:diff.words'),
+      wordsWithSpace: t('ui:diff.wordsWithSpace'),
+      sentences: t('ui:diff.sentences'),
     };
     return labels[mode as keyof typeof labels] || mode;
   };
@@ -118,7 +122,7 @@ export const AdvancedTextDiff = ({
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-2">
           <FileEdit className="w-4 h-4" />
-          <span className="font-medium text-amber-800">{title}</span>
+          <span className="font-medium text-amber-800">{displayTitle}</span>
         </div>
         {shouldCollapse && (
           <button
@@ -132,7 +136,7 @@ export const AdvancedTextDiff = ({
 
       {/* Diff Mode Selector */}
       <div className="mb-3">
-        <div className="text-xs font-medium text-gray-600 mb-2">비교 방식:</div>
+        <div className="text-xs font-medium text-gray-600 mb-2">{t('ui:diff.comparisonMode')}</div>
         <div className="flex flex-wrap gap-1">
           {(
             [
@@ -162,15 +166,15 @@ export const AdvancedTextDiff = ({
       {/* Statistics */}
       <div className="mb-3 grid grid-cols-3 gap-2 text-xs">
         <div className="bg-white p-2 rounded border">
-          <div className="text-gray-600">추가</div>
+          <div className="text-gray-600">{t('ui:diff.added')}</div>
           <div className="font-medium text-green-600">+{stats.additions}</div>
         </div>
         <div className="bg-white p-2 rounded border">
-          <div className="text-gray-600">삭제</div>
+          <div className="text-gray-600">{t('ui:diff.deleted')}</div>
           <div className="font-medium text-red-600">-{stats.deletions}</div>
         </div>
         <div className="bg-white p-2 rounded border">
-          <div className="text-gray-600">동일</div>
+          <div className="text-gray-600">{t('ui:diff.same')}</div>
           <div className="font-medium text-gray-600">{stats.unchanged}</div>
         </div>
       </div>
@@ -187,12 +191,13 @@ export const AdvancedTextDiff = ({
       {shouldCollapse && !isExpanded && (
         <div className="bg-white p-3 rounded border text-center">
           <div className="text-sm text-gray-500">
-            변경사항이 많습니다. 위의 "펼치기" 버튼을 눌러 전체 내용을
-            확인하세요.
+            {t('ui:diff.manyChanges')}
           </div>
           <div className="text-xs text-gray-400 mt-1">
-            {diffResults.length}개 변경 부분, 총{" "}
-            {oldText.length + newText.length}자
+            {t('ui:diff.changeStats', { 
+              count: diffResults.length, 
+              total: oldText.length + newText.length 
+            })}
           </div>
         </div>
       )}

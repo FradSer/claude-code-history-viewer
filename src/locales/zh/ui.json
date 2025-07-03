@@ -1,0 +1,189 @@
+{
+  "header": {
+    "title": "Claude Code History Viewer",
+    "subtitle": "探索和分析您的 Claude Code 对话历史"
+  },
+  "settings": {
+    "title": "设置",
+    "folder": "更改文件夹",
+    "theme": "主题",
+    "language": "语言",
+    "update": "检查更新"
+  },
+  "themes": {
+    "light": "浅色",
+    "dark": "深色",
+    "system": "系统"
+  },
+  "languages": {
+    "ko": "한국어",
+    "en": "English",
+    "zh": "中文"
+  },
+  "navigation": {
+    "projects": "项目",
+    "sessions": "会话",
+    "analytics": "分析仪表板",
+    "tokenStats": "令牌统计",
+    "messages": "查看消息"
+  },
+  "status": {
+    "projects": "项目：{{count}} 个",
+    "sessions": "会话：{{count}} 个",
+    "messages": "消息：{{current}} 条",
+    "messagesTotal": "消息：{{current}} / {{total}} 条",
+    "sessionTokens": "当前会话令牌：{{count, number}} 个",
+    "projectTokens": "项目令牌：{{count, number}} 个"
+  },
+  "content": {
+    "selectSession": "请选择一个会话",
+    "selectSessionDesc": "从左侧边栏选择项目和会话以查看对话内容",
+    "conversation": "对话内容",
+    "analyticsTitle": "分析仪表板",
+    "tokenStatsTitle": "令牌使用统计",
+    "sessionSummaryNotFound": "未找到会话摘要。",
+    "toolsUsed": "已使用工具",
+    "normalChat": "普通对话",
+    "hasErrors": "发生错误"
+  },
+  "analytics": {
+    "projectAnalysis": "详细的项目和会话分析",
+    "projectOverview": "项目概览统计和活动分析",
+    "tokenAnalysis": "项目令牌使用分析和详细会话统计"
+  },
+  "loading": {
+    "tokenStats": "正在加载令牌统计...",
+    "projects": "正在扫描项目...",
+    "sessions": "正在加载会话...",
+    "messages": "正在加载消息...",
+    "initializing": "正在初始化应用..."
+  },
+  "messageViewer": {
+    "loadingMessages": "正在加载消息...",
+    "noMessages": "没有消息",
+    "noMessagesDesc": "从左侧边栏选择项目和会话以查看对话内容。",
+    "user": "用户",
+    "assistant": "Claude",
+    "system": "系统",
+    "branch": "分支",
+    "toolResult": "工具执行结果：",
+    "loadingPrevious": "正在加载先前的消息... ({{current}}/{{total}})",
+    "loadMoreButton": "加载更多 {{count}} 条先前的消息 ({{current}}/{{total}})",
+    "allLoaded": "所有消息已加载 ({{total}} 条)",
+    "renderError": "消息渲染错误",
+    "renderErrorDesc": "请在控制台中查看详细错误信息。",
+    "scrollToBottom": "滚动到底部",
+    "reply": "回复 (depth: {{depth}})",
+    "debug": {
+      "messages": "消息",
+      "offset": "偏移",
+      "hasMore": "更多",
+      "loading": "加载中",
+      "session": "会话",
+      "file": "文件",
+      "firstMessage": "首条消息",
+      "lastMessage": "最后消息"
+    }
+  },
+  "diff": {
+    "changes": "变更内容：",
+    "advancedAnalysis": "高级分析",
+    "advancedTextAnalysis": "高级文本分析",
+    "comparisonMode": "比较方式：",
+    "lines": "行单位",
+    "trimmedLines": "行单位（忽略空白）",
+    "chars": "字符单位",
+    "words": "词单位",
+    "wordsWithSpace": "词+空格单位",
+    "sentences": "句子单位",
+    "added": "新增",
+    "deleted": "删除",
+    "same": "相同",
+    "manyChanges": "变更较多。点击上方'展开'按钮查看完整内容。",
+    "addedCode": "新增代码",
+    "changeStats": "{{count}} 处变更，共 {{total}} 个字符"
+  },
+  "fileContent": {
+    "title": "文件内容",
+    "copyFileContent": "复制文件内容",
+    "fileEditResult": "文件编辑结果",
+    "originalFile": "原始文件",
+    "originalFileContent": "原始文件内容",
+    "copyOriginalFile": "复制原始文件",
+    "updatedFileContent": "更新后的文件内容",
+    "toolId": "工具 ID"
+  },
+  "projectTree": {
+    "loading": "加载中...",
+    "noProjects": "未找到项目",
+    "timeAgo": {
+      "minutes": "{{count}} 分钟前",
+      "hours": "{{count}} 小时前",
+      "days": "{{count}} 天前"
+    }
+  },
+  "analytics": {
+    "title": "分析仪表板",
+    "projectTab": "项目概览",
+    "sessionTab": "会话详情",
+    "overview": {
+      "totalTokens": "总令牌",
+      "totalMessages": "总消息",
+      "totalSessions": "总会话",
+      "averageTokensPerMessage": "每消息平均令牌",
+      "totalActiveHours": "总活跃时间",
+      "averageSessionLength": "平均会话时长"
+    },
+    "charts": {
+      "weeklyActivity": "周活跃趋势",
+      "tokenUsage": "令牌使用量",
+      "activityHeatmap": "活跃热力图",
+      "noData": "无可用数据"
+    },
+    "heatmap": {
+      "days": ["日", "一", "二", "三", "四", "五", "六"],
+      "lowActivity": "低",
+      "highActivity": "高"
+    },
+    "toolUsage": {
+      "title": "工具使用统计",
+      "toolName": "工具",
+      "usageCount": "使用次数",
+      "successRate": "成功率",
+      "noTools": "无工具使用数据"
+    },
+    "sessionComparison": {
+      "title": "会话比较",
+      "vsAverage": "vs 项目平均",
+      "higher": "高 {{percent}}%",
+      "lower": "低 {{percent}}%",
+      "same": "与平均相同"
+    }
+  },
+  "tokenStats": {
+    "title": "令牌使用统计",
+    "sessionTitle": "会话统计",
+    "projectTitle": "项目统计",
+    "inputTokens": "输入令牌",
+    "outputTokens": "输出令牌",
+    "cacheCreation": "缓存创建",
+    "cacheRead": "缓存读取",
+    "totalTokens": "总令牌",
+    "messages": "消息",
+    "firstMessage": "首条消息",
+    "lastMessage": "最后消息",
+    "duration": "持续时间",
+    "averagePerMessage": "每消息平均",
+    "noData": "无令牌统计数据",
+    "topSessions": "令牌使用量排行",
+    "recentSessions": "最近会话",
+    "andMore": "还有 {{count}} 个会话",
+    "sessionsCount": "{{count}} 个会话"
+  },
+  "time": {
+    "lessThanMinute": "< 1分钟",
+    "minutes": "{{count}}分钟",
+    "hours": "{{count}}小时",
+    "days": "{{count}}天"
+  }
+}

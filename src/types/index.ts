@@ -194,6 +194,7 @@ export interface AppState {
   sessionTokenStats: SessionTokenStats | null;
   projectTokenStats: SessionTokenStats[];
   theme: Theme;
+  language: string;
 }
 
 export interface SessionTokenStats {

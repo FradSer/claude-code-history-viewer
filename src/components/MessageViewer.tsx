@@ -5,6 +5,7 @@ import React, {
   useState,
   useMemo,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { Loader2, MessageCircle, ChevronDown } from "lucide-react";
 import type { ClaudeMessage, ClaudeSession, PaginationState } from "../types";
 import { ClaudeContentArrayRenderer } from "./contentRenderer";
@@ -32,6 +33,8 @@ interface MessageNodeProps {
 }
 
 const ClaudeMessageNode = ({ message, depth }: MessageNodeProps) => {
+  const { t } = useTranslation(['ui']);
+  
   if (message.isSidechain) {
     return null;
   }
@@ -50,7 +53,7 @@ const ClaudeMessageNode = ({ message, depth }: MessageNodeProps) => {
         {/* depth 표시 (개발 모드에서만) */}
         {import.meta.env.DEV && depth > 0 && (
           <div className="text-xs text-gray-400 dark:text-gray-600 mb-1">
-            └─ 답글 (depth: {depth})
+            └─ {t('ui:messageViewer.reply', { depth })}
           </div>
         )}
 
@@ -65,17 +68,17 @@ const ClaudeMessageNode = ({ message, depth }: MessageNodeProps) => {
           )}
           <span className="font-medium whitespace-nowrap">
             {message.type === "user"
-              ? "사용자"
+              ? t('ui:messageViewer.user')
               : message.type === "assistant"
-              ? "Claude"
-              : "시스템"}
+              ? t('ui:messageViewer.assistant')
+              : t('ui:messageViewer.system')}
           </span>
           <span className="whitespace-nowrap">
             {formatTime(message.timestamp)}
           </span>
           {message.isSidechain && (
             <span className="px-2 py-1 whitespace-nowrap text-xs bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-300 rounded-full">
-              분기
+              {t('ui:messageViewer.branch')}
             </span>
           )}
           {message.type === "assistant" && (
@@ -109,7 +112,7 @@ const ClaudeMessageNode = ({ message, depth }: MessageNodeProps) => {
             typeof message.toolUseResult === "object" &&
             Array.isArray(message.toolUseResult.content) && (
               <div className={cn("text-sm mb-2", COLORS.ui.text.tertiary)}>
-                <span className="italic">도구 실행 결과:</span>
+                <span className="italic">{t('ui:messageViewer.toolResult')}</span>
               </div>
             )}
 
@@ -150,6 +153,7 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
   selectedSession,
   onLoadMore,
 }) => {
+  const { t } = useTranslation(['ui']);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const prevMessagesLength = useRef(messages.length);
 
@@ -296,7 +300,7 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
     try {
       onLoadMore();
     } catch (error) {
-      console.error("더보기 실행 중 에러:", error);
+      console.error("Load more execution error:", error);
       isProcessingLoadMore.current = false;
       if (scrollContainerRef.current) {
         scrollContainerRef.current.style.overflow = "auto";
@@ -323,7 +327,7 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
             setShowScrollToBottom(!isNearBottom && messages.length > 5);
           }
         } catch (error) {
-          console.error("스크롤 핸들러 에러:", error);
+          console.error("Scroll handler error:", error);
         }
         throttleTimer = null;
       }, 100);
@@ -348,7 +352,7 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
       <div className="flex-1 flex items-center justify-center h-full">
         <div className="flex items-center space-x-2 text-gray-500">
           <Loader2 className="w-4 h-4 animate-spin" />
-          <span>메시지를 불러오는 중...</span>
+          <span>{t('ui:messageViewer.loadingMessages')}</span>
         </div>
       </div>
     );
@@ -360,11 +364,9 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
         <div className="mb-4">
           <MessageCircle className="w-16 h-16 mx-auto text-gray-400" />
         </div>
-        <h3 className="text-lg font-medium mb-2">메시지가 없습니다</h3>
+        <h3 className="text-lg font-medium mb-2">{t('ui:messageViewer.noMessages')}</h3>
         <p className="text-sm text-center">
-          왼쪽에서 프로젝트와 세션을 선택하여
-          <br />
-          대화 내용을 확인하세요.
+          {t('ui:messageViewer.noMessagesDesc')}
         </p>
       </div>
     );
@@ -421,18 +423,18 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
         {import.meta.env.DEV && (
           <div className="bg-yellow-50 p-2 text-xs text-yellow-800 border-b space-y-1">
             <div>
-              메시지: {messages.length} / {pagination.totalCount} | 오프셋:{" "}
-              {pagination.currentOffset} | 더 있음:{" "}
-              {pagination.hasMore ? "O" : "X"} | 로딩중:{" "}
+              {t('ui:messageViewer.debug.messages')}: {messages.length} / {pagination.totalCount} | {t('ui:messageViewer.debug.offset')}:{" "}
+              {pagination.currentOffset} | {t('ui:messageViewer.debug.hasMore')}:{" "}
+              {pagination.hasMore ? "O" : "X"} | {t('ui:messageViewer.debug.loading')}:{" "}
               {pagination.isLoadingMore ? "O" : "X"}
             </div>
             <div>
-              세션: {selectedSession?.session_id?.slice(-8)} | 파일:{" "}
+              {t('ui:messageViewer.debug.session')}: {selectedSession?.session_id?.slice(-8)} | {t('ui:messageViewer.debug.file')}:{" "}
               {selectedSession?.file_path?.split("/").pop()?.slice(0, 20)}
             </div>
             {messages.length > 0 && (
               <div>
-                첫번째 메시지: {messages[0]?.timestamp} | 마지막 메시지:{" "}
+                {t('ui:messageViewer.debug.firstMessage')}: {messages[0]?.timestamp} | {t('ui:messageViewer.debug.lastMessage')}:{" "}
                 {messages[messages.length - 1]?.timestamp}
               </div>
             )}
@@ -446,8 +448,10 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
                 <div className="flex items-center space-x-2 text-gray-500 py-2 px-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
                   <Loader2 className="w-4 h-4 animate-spin" />
                   <span>
-                    이전 메시지를 불러오는 중... ({messages.length}/
-                    {pagination.totalCount})
+                    {t('ui:messageViewer.loadingPrevious', { 
+                      current: messages.length, 
+                      total: pagination.totalCount 
+                    })}
                   </span>
                 </div>
               ) : (
@@ -457,17 +461,14 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>
-                    이전 메시지{" "}
-                    {(() => {
-                      const remainingMessages =
-                        pagination.totalCount - messages.length;
-                      const messagesToLoad = Math.min(
-                        pagination.pageSize,
-                        remainingMessages
-                      );
-                      return messagesToLoad;
-                    })()}
-                    개 더 보기 ({messages.length}/{pagination.totalCount})
+                    {t('ui:messageViewer.loadMoreButton', {
+                      count: (() => {
+                        const remainingMessages = pagination.totalCount - messages.length;
+                        return Math.min(pagination.pageSize, remainingMessages);
+                      })(),
+                      current: messages.length,
+                      total: pagination.totalCount
+                    })}
                   </span>
                 </button>
               )}
@@ -478,7 +479,7 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
           {!pagination.hasMore && messages.length > 0 && (
             <div className="flex items-center justify-center py-4">
               <div className="text-gray-400 text-sm">
-                모든 메시지를 불러왔습니다 ({pagination.totalCount}개)
+                {t('ui:messageViewer.allLoaded', { total: pagination.totalCount })}
               </div>
             </div>
           )}
@@ -511,8 +512,8 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
                 });
               }
             } catch (error) {
-              console.error("메시지 렌더링 에러:", error);
-              console.error("에러 발생 시 메시지 상태:", {
+              console.error("Message rendering error:", error);
+              console.error("Message state during error:", {
                 messagesLength: messages.length,
                 rootMessagesLength: rootMessages.length,
                 pagination,
@@ -528,16 +529,16 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
                 >
                   <div className="text-center text-red-600">
                     <div className="text-lg font-semibold mb-2">
-                      메시지 렌더링 오류
+                      {t('ui:messageViewer.renderError')}
                     </div>
                     <div className="text-sm">
-                      콘솔에서 자세한 오류 정보를 확인하세요.
+                      {t('ui:messageViewer.renderErrorDesc')}
                     </div>
                     <button
                       onClick={() => window.location.reload()}
                       className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
                     >
-                      새로고침
+                      {t('common:refresh')}
                     </button>
                   </div>
                 </div>
@@ -559,8 +560,8 @@ export const MessageViewer: React.FC<MessageViewerProps> = ({
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-2"
             )}
-            title="맨 아래로 이동"
-            aria-label="맨 아래로 스크롤"
+            title={t('ui:messageViewer.scrollToBottom')}
+            aria-label={t('ui:messageViewer.scrollToBottom')}
           >
             <ChevronDown className="w-3 h-3" />
           </button>

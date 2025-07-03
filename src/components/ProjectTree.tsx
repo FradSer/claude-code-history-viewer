@@ -1,5 +1,6 @@
 // src/components/ProjectTree.tsx
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Folder,
   Wrench,
@@ -30,6 +31,7 @@ export const ProjectTree: React.FC<ProjectTreeProps> = ({
   onSessionSelect,
   isLoading,
 }) => {
+  const { t } = useTranslation(['ui']);
   const [expandedProject, setExpandedProject] = useState("");
 
   const formatTimeAgo = (dateStr: string) => {
@@ -42,11 +44,11 @@ export const ProjectTree: React.FC<ProjectTreeProps> = ({
       const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
       if (diffMins < 60) {
-        return `${diffMins}분 전`;
+        return t('ui:projectTree.timeAgo.minutes', { count: diffMins });
       } else if (diffHours < 24) {
-        return `${diffHours}시간 전`;
+        return t('ui:projectTree.timeAgo.hours', { count: diffHours });
       } else if (diffDays < 7) {
-        return `${diffDays}일 전`;
+        return t('ui:projectTree.timeAgo.days', { count: diffDays });
       } else {
         return date.toLocaleDateString("ko-KR", {
           month: "short",
@@ -67,7 +69,7 @@ export const ProjectTree: React.FC<ProjectTreeProps> = ({
       <div className="w-80 bg-white border-r border-gray-200 flex items-center justify-center">
         <div className="flex items-center space-x-2 text-gray-500">
           <Loader2 className="w-4 h-4 animate-spin" />
-          <span>로딩 중...</span>
+          <span>{t('ui:projectTree.loading')}</span>
         </div>
       </div>
     );
@@ -83,7 +85,7 @@ export const ProjectTree: React.FC<ProjectTreeProps> = ({
               <div className="mb-2">
                 <Folder className="w-8 h-8 mx-auto text-gray-500 dark:text-gray-400" />
               </div>
-              <p className="text-sm">프로젝트를 찾을 수 없습니다</p>
+              <p className="text-sm">{t('ui:projectTree.noProjects')}</p>
             </div>
           </div>
         ) : (

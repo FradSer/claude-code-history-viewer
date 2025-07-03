@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ProjectTree } from "./components/ProjectTree";
 import { MessageViewer } from "./components/MessageViewer";
 import { TokenStatsViewer } from "./components/TokenStatsViewer";
@@ -29,6 +30,7 @@ import {
   Laptop,
   Folder,
   Activity,
+  Languages,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -45,6 +47,7 @@ import { cn } from "./utils/cn";
 import { COLORS } from "./constants/colors";
 
 function App() {
+  const { t } = useTranslation(['ui', 'errors', 'common']);
   const [showTokenStats, setShowTokenStats] = useState(false);
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [showFolderSelector, setShowFolderSelector] = useState(false);
@@ -68,6 +71,7 @@ function App() {
     error,
     sessionTokenStats,
     projectTokenStats,
+    language,
     initializeApp,
     selectProject,
     selectSession,
@@ -79,6 +83,7 @@ function App() {
     loadSessionComparison,
     clearTokenStats,
     setClaudePath,
+    setLanguage,
   } = useAppStore();
 
   const { theme, setTheme } = useTheme();
@@ -255,7 +260,7 @@ function App() {
               COLORS.semantic.error.text
             )}
           >
-            오류가 발생했습니다
+            {t('errors:title')}
           </h1>
           <p className={cn("mb-4", COLORS.semantic.error.text)}>
             {error.message}
@@ -268,7 +273,7 @@ function App() {
               COLORS.semantic.error.text
             )}
           >
-            다시 시도
+            {t('common:retry')}
           </button>
         </div>
       </div>
@@ -296,10 +301,10 @@ function App() {
               <h1
                 className={cn("text-xl font-semibold", COLORS.ui.text.primary)}
               >
-                Claude Code History Viewer
+                {t('ui:header.title')}
               </h1>
               <p className={cn("text-sm", COLORS.ui.text.muted)}>
-                Claude Code 대화 기록을 탐색하고 분석하세요
+                {t('ui:header.subtitle')}
               </p>
             </div>
           </div>
@@ -336,7 +341,7 @@ function App() {
                         ? COLORS.semantic.info.bgDark
                         : COLORS.ui.interactive.hover
                     )}
-                    title="분석 대시보드"
+                    title={t('ui:navigation.analytics')}
                   >
                     <BarChart3
                       className={cn("w-5 h-5", COLORS.ui.text.primary)}
@@ -359,7 +364,7 @@ function App() {
                         ? COLORS.semantic.success.bgDark
                         : COLORS.ui.interactive.hover
                     )}
-                    title="토큰 통계 (기존)"
+                    title={t('ui:navigation.tokenStats')}
                   >
                     {isLoadingTokenStats ? (
                       <Loader2
@@ -402,7 +407,7 @@ function App() {
                             "hover:text-gray-600 hover:bg-gray-100 dark:hover:text-gray-300 dark:hover:bg-gray-700"
                           )
                     )}
-                    title="메시지 보기"
+                    title={t('ui:navigation.messages')}
                   >
                     <MessageSquare
                       className={cn("w-5 h-5", COLORS.ui.text.primary)}
@@ -417,7 +422,7 @@ function App() {
                       COLORS.ui.text.disabled,
                       "hover:text-gray-600 hover:bg-gray-100 dark:hover:text-gray-300 dark:hover:bg-gray-700"
                     )}
-                    title="세션 새로고침"
+                    title={t('common:refresh')}
                   >
                     <RefreshCw
                       className={cn(
@@ -445,19 +450,19 @@ function App() {
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuLabel>설정</DropdownMenuLabel>
+                  <DropdownMenuLabel>{t('ui:settings.title')}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
 
                   <DropdownMenuItem onClick={() => setShowFolderSelector(true)}>
                     <Folder
                       className={cn("mr-2 h-4 w-4", COLORS.ui.text.primary)}
                     />
-                    <span>폴더 변경</span>
+                    <span>{t('ui:settings.folder')}</span>
                   </DropdownMenuItem>
 
                   <DropdownMenuSeparator />
 
-                  <DropdownMenuLabel>테마</DropdownMenuLabel>
+                  <DropdownMenuLabel>{t('ui:settings.theme')}</DropdownMenuLabel>
                   <DropdownMenuRadioGroup
                     value={theme}
                     onValueChange={(value) => setTheme(value as Theme)}
@@ -466,21 +471,49 @@ function App() {
                       <Sun
                         className={cn("mr-2 h-4 w-4", COLORS.ui.text.primary)}
                       />
-                      <span>라이트</span>
+                      <span>{t('ui:themes.light')}</span>
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="dark">
                       <Moon
                         className={cn("mr-2 h-4 w-4", COLORS.ui.text.primary)}
                       />
-                      <span>다크</span>
+                      <span>{t('ui:themes.dark')}</span>
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="system">
                       <Laptop
                         className={cn("mr-2 h-4 w-4", COLORS.ui.text.primary)}
                       />
-                      <span>시스템</span>
+                      <span>{t('ui:themes.system')}</span>
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
+
+                  <DropdownMenuSeparator />
+
+                  <DropdownMenuLabel>{t('ui:settings.language')}</DropdownMenuLabel>
+                  <DropdownMenuRadioGroup
+                    value={language}
+                    onValueChange={(value) => setLanguage(value)}
+                  >
+                    <DropdownMenuRadioItem value="ko">
+                      <Languages
+                        className={cn("mr-2 h-4 w-4", COLORS.ui.text.primary)}
+                      />
+                      <span>{t('ui:languages.ko')}</span>
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="en">
+                      <Languages
+                        className={cn("mr-2 h-4 w-4", COLORS.ui.text.primary)}
+                      />
+                      <span>{t('ui:languages.en')}</span>
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="zh">
+                      <Languages
+                        className={cn("mr-2 h-4 w-4", COLORS.ui.text.primary)}
+                      />
+                      <span>{t('ui:languages.zh')}</span>
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                  
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     onClick={() => updateChecker.checkForUpdates(true)}
@@ -488,7 +521,7 @@ function App() {
                     <RefreshCw
                       className={cn("mr-2 h-4 w-4", COLORS.ui.text.primary)}
                     />
-                    업데이트 확인
+                    {t('ui:settings.update')}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -530,14 +563,14 @@ function App() {
                     )}
                   >
                     {showAnalytics
-                      ? "분석 대시보드"
+                      ? t('ui:content.analyticsTitle')
                       : showTokenStats
-                      ? "토큰 사용량 통계"
-                      : "대화 내용"}
+                      ? t('ui:content.tokenStatsTitle')
+                      : t('ui:content.conversation')}
                   </h2>
                   <span className={cn("text-sm", COLORS.ui.text.secondary)}>
                     {selectedSession?.summary ||
-                      "세션 요약을 찾을 수 없습니다."}
+                      t('ui:content.sessionSummaryNotFound')}
                   </span>
                   {!showTokenStats && !showAnalytics && selectedSession && (
                     <div>
@@ -545,22 +578,22 @@ function App() {
                         {pagination.totalCount >= messages.length &&
                           ` ${pagination.totalCount || "-"}개 • `}
                         {selectedSession.has_tool_use
-                          ? "도구 사용됨"
-                          : "일반 대화"}
-                        {selectedSession.has_errors && " • 에러 발생"}
+                          ? t('ui:content.toolsUsed')
+                          : t('ui:content.normalChat')}
+                        {selectedSession.has_errors && ` • ${t('ui:content.hasErrors')}`}
                       </p>
                     </div>
                   )}
                   {showTokenStats && (
                     <p className={cn("text-sm mt-1", COLORS.ui.text.muted)}>
-                      프로젝트별 토큰 사용량 분석 및 세션별 상세 통계
+                      {t('ui:analytics.tokenAnalysis')}
                     </p>
                   )}
                   {showAnalytics && (
                     <p className={cn("text-sm mt-1", COLORS.ui.text.muted)}>
                       {selectedSession
-                        ? "프로젝트 및 세션 상세 분석"
-                        : "프로젝트 전체 통계 및 활동 분석"}
+                        ? t('ui:analytics.projectAnalysis')
+                        : t('ui:analytics.projectOverview')}
                     </p>
                   )}
                 </div>
@@ -605,10 +638,9 @@ function App() {
                       COLORS.ui.text.disabledDark
                     )}
                   />
-                  <p className="text-lg mb-2">세션을 선택해주세요</p>
+                  <p className="text-lg mb-2">{t('ui:content.selectSession')}</p>
                   <p className="text-sm">
-                    좌측에서 프로젝트와 세션을 선택하면 대화 내용을 볼 수
-                    있습니다
+                    {t('ui:content.selectSessionDesc')}
                   </p>
                 </div>
               </div>
@@ -632,24 +664,30 @@ function App() {
           )}
         >
           <div className="flex items-center space-x-4">
-            <span>프로젝트: {projects.length}개</span>
-            <span>세션: {sessions.length}개</span>
+            <span>{t('ui:status.projects', { count: projects.length })}</span>
+            <span>{t('ui:status.sessions', { count: sessions.length })}</span>
             {selectedSession && !showTokenStats && !showAnalytics && (
               <span>
-                메시지: {messages.length}개
-                {pagination.totalCount > messages.length &&
-                  ` / ${pagination.totalCount}개`}
+                {pagination.totalCount > messages.length
+                  ? t('ui:status.messagesTotal', { 
+                      current: messages.length, 
+                      total: pagination.totalCount 
+                    })
+                  : t('ui:status.messages', { current: messages.length })}
               </span>
             )}
             {showTokenStats && sessionTokenStats && (
               <span>
-                현재 세션 토큰:{" "}
-                {sessionTokenStats.total_tokens.toLocaleString()}개
+                {t('ui:status.sessionTokens', { 
+                  count: sessionTokenStats.total_tokens 
+                })}
               </span>
             )}
             {showAnalytics && projectSummary && (
               <span>
-                프로젝트 토큰: {projectSummary.total_tokens.toLocaleString()}개
+                {t('ui:status.projectTokens', { 
+                  count: projectSummary.total_tokens 
+                })}
               </span>
             )}
           </div>
@@ -663,11 +701,11 @@ function App() {
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
                 <span>
-                  {isLoadingTokenStats && "토큰 통계 로딩 중..."}
-                  {isLoadingProjects && "프로젝트 스캔 중..."}
-                  {isLoadingSessions && "세션 로딩 중..."}
-                  {isLoadingMessages && "메시지 로딩 중..."}
-                  {isLoading && "앱 초기화 중..."}
+                  {isLoadingTokenStats && t('ui:loading.tokenStats')}
+                  {isLoadingProjects && t('ui:loading.projects')}
+                  {isLoadingSessions && t('ui:loading.sessions')}
+                  {isLoadingMessages && t('ui:loading.messages')}
+                  {isLoading && t('ui:loading.initializing')}
                 </span>
               </>
             )}

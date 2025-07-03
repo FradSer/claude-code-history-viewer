@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FileText } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Highlight, themes } from "prism-react-renderer";
@@ -18,6 +19,7 @@ export const FileContent = ({
   fileData: Record<string, unknown>;
   title: string;
 }) => {
+  const { t } = useTranslation(['ui']);
   const { renderCopyButton } = useCopyButton();
   const { isDarkMode } = useTheme();
   const content = typeof fileData.content === "string" ? fileData.content : "";
@@ -145,12 +147,12 @@ export const FileContent = ({
         titleClassName={cn(COLORS.semantic.info.text)}
         rightContent={
           <div className="flex items-center space-x-2">
-            {/* 파일 내용 복사 버튼 */}
+            {/* Copy file content button */}
             {content &&
               renderCopyButton(
                 content,
                 `file-content-${filePath}`,
-                "파일 내용 복사"
+                t('ui:fileContent.copyFileContent')
               )}
 
             <div className={cn("text-xs", COLORS.semantic.info.text)}>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   BarChart3,
   TrendingUp,
@@ -25,8 +26,9 @@ interface TokenStatsViewerProps {
 export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
   sessionStats,
   projectStats = [],
-  title = "토큰 사용량 통계",
+  title,
 }) => {
+  const { t } = useTranslation(['ui']);
   // 단일 세션 통계 표시
   const renderSessionStats = (
     stats: SessionTokenStats,
@@ -62,7 +64,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
             <span
               className={cn("text-xs font-medium", COLORS.ui.text.tertiary)}
             >
-              입력 토큰
+              {t('ui:tokenStats.inputTokens')}
             </span>
           </div>
           <div
@@ -81,7 +83,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
             <span
               className={cn("text-xs font-medium", COLORS.ui.text.tertiary)}
             >
-              출력 토큰
+              {t('ui:tokenStats.outputTokens')}
             </span>
           </div>
           <div
@@ -97,7 +99,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
             <span
               className={cn("text-xs font-medium", COLORS.ui.text.tertiary)}
             >
-              캐시 생성
+              {t('ui:tokenStats.cacheCreation')}
             </span>
           </div>
           <div className={cn("text-lg font-bold", COLORS.tools.search.text)}>
@@ -111,7 +113,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
             <span
               className={cn("text-xs font-medium", COLORS.ui.text.tertiary)}
             >
-              캐시 읽기
+              {t('ui:tokenStats.cacheRead')}
             </span>
           </div>
           <div className={cn("text-lg font-bold", COLORS.tools.task.text)}>
@@ -132,7 +134,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
             <span
               className={cn("text-xs font-medium", COLORS.tools.system.text)}
             >
-              총 토큰
+              {t('ui:tokenStats.totalTokens')}
             </span>
           </div>
           <div className={cn("text-xl font-bold", COLORS.tools.system.text)}>
@@ -146,7 +148,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
             <span
               className={cn("text-xs font-medium", COLORS.ui.text.tertiary)}
             >
-              메시지 수
+              {t('ui:tokenStats.messages')}
             </span>
           </div>
           <div className={cn("text-lg font-bold", COLORS.ui.text.secondary)}>
@@ -160,7 +162,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
             <span
               className={cn("text-xs font-medium", COLORS.ui.text.tertiary)}
             >
-              평균 토큰/메시지
+              {t('ui:tokenStats.averagePerMessage')}
             </span>
           </div>
           <div className={cn("text-lg font-bold", COLORS.ui.text.secondary)}>
@@ -179,8 +181,8 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
           COLORS.ui.text.muted
         )}
       >
-        <span>시작: {formatTime(stats.first_message_time)}</span>
-        <span>종료: {formatTime(stats.last_message_time)}</span>
+        <span>{t('ui:tokenStats.firstMessage')}: {formatTime(stats.first_message_time)}</span>
+        <span>{t('ui:tokenStats.lastMessage')}: {formatTime(stats.last_message_time)}</span>
       </div>
     </div>
   );
@@ -227,7 +229,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
             )}
           >
             <BarChart3 className="w-5 h-5" />
-            <span>프로젝트 전체 통계 ({projectStats.length}개 세션)</span>
+            <span>{t('ui:tokenStats.projectTitle')} ({t('ui:tokenStats.sessionsCount', {count: projectStats.length})})</span>
           </h3>
 
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
@@ -242,7 +244,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
                 {totalStats.total_tokens.toLocaleString()}
               </div>
               <div className={cn("text-xs", COLORS.ui.text.tertiary)}>
-                총 토큰
+                {t('ui:tokenStats.totalTokens')}
               </div>
             </div>
             <div
@@ -261,7 +263,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
                 {totalStats.total_input_tokens.toLocaleString()}
               </div>
               <div className={cn("text-xs", COLORS.ui.text.tertiary)}>
-                입력 토큰
+                {t('ui:tokenStats.inputTokens')}
               </div>
             </div>
             <div
@@ -281,7 +283,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
                 {totalStats.total_output_tokens.toLocaleString()}
               </div>
               <div className={cn("text-xs", COLORS.ui.text.tertiary)}>
-                출력 토큰
+                {t('ui:tokenStats.outputTokens')}
               </div>
             </div>
             <div
@@ -297,7 +299,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
                 {totalStats.total_cache_creation_tokens.toLocaleString()}
               </div>
               <div className={cn("text-xs", COLORS.ui.text.tertiary)}>
-                캐시 생성
+                {t('ui:tokenStats.cacheCreation')}
               </div>
             </div>
             <div
@@ -313,7 +315,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
                 {totalStats.message_count.toLocaleString()}
               </div>
               <div className={cn("text-xs", COLORS.ui.text.tertiary)}>
-                총 메시지
+                {t('ui:tokenStats.messages')}
               </div>
             </div>
           </div>
@@ -322,7 +324,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
         {/* 개별 세션 통계 */}
         <div className="space-y-3">
           <h4 className={cn("text-md font-medium", COLORS.ui.text.secondary)}>
-            세션별 상세 통계
+            {t('ui:tokenStats.recentSessions')}
           </h4>
           {projectStats.slice(0, 10).map((stats, index) => (
             <div
@@ -339,7 +341,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
                     COLORS.ui.text.secondary
                   )}
                 >
-                  #{index + 1} 세션
+                  #{index + 1}
                 </span>
                 <span className={cn("text-xs", COLORS.ui.text.muted)}>
                   {formatTime(stats.last_message_time)}
@@ -352,7 +354,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
             <div
               className={cn("text-center text-sm py-2", COLORS.ui.text.muted)}
             >
-              ... 그리고 {projectStats.length - 10}개 세션 더
+              ... {t('ui:tokenStats.andMore', {count: projectStats.length - 10})}
             </div>
           )}
         </div>
@@ -373,10 +375,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
           className={cn("w-12 h-12 mx-auto mb-2", COLORS.ui.text.disabled)}
         />
         <p className={cn(COLORS.ui.text.tertiary)}>
-          토큰 사용량 데이터가 없습니다
-        </p>
-        <p className={cn("text-sm mt-1", COLORS.ui.text.muted)}>
-          세션을 선택하거나 프로젝트 통계를 로드해보세요
+          {t('ui:tokenStats.noData')}
         </p>
       </div>
     );
@@ -387,7 +386,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
       <div className="flex items-center space-x-2 mb-4">
         <BarChart3 className={cn("w-6 h-6", COLORS.semantic.info.icon)} />
         <h2 className={cn("text-xl font-semibold", COLORS.ui.text.primary)}>
-          {title}
+          {title || t('ui:tokenStats.title')}
         </h2>
       </div>
 
@@ -396,7 +395,7 @@ export const TokenStatsViewer: React.FC<TokenStatsViewerProps> = ({
           <h3
             className={cn("text-lg font-medium mb-3", COLORS.ui.text.secondary)}
           >
-            현재 세션
+            {t('ui:tokenStats.sessionTitle')}
           </h3>
           {renderSessionStats(sessionStats)}
         </div>

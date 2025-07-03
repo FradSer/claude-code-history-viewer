@@ -1,12 +1,15 @@
 import { create } from "zustand";
 import { invoke } from "@tauri-apps/api/core";
 import { load } from "@tauri-apps/plugin-store";
+import i18n from '../i18n';
 import {
   type AppState,
   type ClaudeProject,
   type ClaudeSession,
   type ClaudeMessage,
   type MessagePage,
+  type ProjectStatsSummary,
+  type SessionComparison,
   type SearchFilters,
   type SessionTokenStats,
   type Theme,
@@ -27,6 +30,8 @@ const isTauriAvailable = () => {
 interface AppStore extends AppState {
   // Filter state
   excludeSidechain: boolean;
+  // Language state
+  language: string;
 
   // Actions
   initializeApp: () => Promise<void>;
@@ -41,10 +46,11 @@ interface AppStore extends AppState {
   setClaudePath: (path: string) => void;
   loadSessionTokenStats: (sessionPath: string) => Promise<void>;
   loadProjectTokenStats: (projectPath: string) => Promise<void>;
-  loadProjectStatsSummary: (projectPath: string) => Promise<any>;
-  loadSessionComparison: (sessionId: string, projectPath: string) => Promise<any>;
+  loadProjectStatsSummary: (projectPath: string) => Promise<ProjectStatsSummary | null>;
+  loadSessionComparison: (sessionId: string, projectPath: string) => Promise<SessionComparison | null>;
   clearTokenStats: () => void;
   setTheme: (theme: Theme) => Promise<void>;
+  setLanguage: (language: string) => Promise<void>;
   setExcludeSidechain: (exclude: boolean) => void;
 }
 
@@ -77,6 +83,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   sessionTokenStats: null,
   projectTokenStats: [],
   theme: "system" as Theme,
+  language: "en",
   excludeSidechain: true,
 
   // Actions
@@ -94,9 +101,19 @@ export const useAppStore = create<AppStore>((set, get) => ({
         const store = await load("settings.json", { autoSave: false });
         const savedPath = await store.get<string>("claudePath");
         const savedTheme = await store.get<Theme>("theme");
+        const savedLanguage = await store.get<string>("language");
 
         if (savedTheme) {
           set({ theme: savedTheme });
+        }
+
+        if (savedLanguage) {
+          set({ language: savedLanguage });
+          await i18n.changeLanguage(savedLanguage);
+        } else {
+          // 设置默认语言
+          set({ language: 'en' });
+          await i18n.changeLanguage('en');
         }
 
         if (savedPath) {
@@ -413,26 +430,26 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   loadProjectStatsSummary: async (projectPath: string) => {
     try {
-      const summary = await invoke("get_project_stats_summary", {
+      const summary = await invoke<ProjectStatsSummary>("get_project_stats_summary", {
         projectPath,
       });
       return summary;
     } catch (error) {
       console.error("Failed to load project stats summary:", error);
-      throw error;
+      return null;
     }
   },
 
   loadSessionComparison: async (sessionId: string, projectPath: string) => {
     try {
-      const comparison = await invoke("get_session_comparison", {
+      const comparison = await invoke<SessionComparison>("get_session_comparison", {
         sessionId,
         projectPath,
       });
       return comparison;
     } catch (error) {
       console.error("Failed to load session comparison:", error);
-      throw error;
+      return null;
     }
   },
 
@@ -450,6 +467,22 @@ export const useAppStore = create<AppStore>((set, get) => ({
       await store.save();
     } catch (error) {
       console.error("Failed to save theme:", error);
+    }
+  },
+
+  setLanguage: async (language: string) => {
+    set({ language });
+
+    // Update i18next
+    await i18n.changeLanguage(language);
+
+    // Save to persistent storage
+    try {
+      const store = await load("settings.json", { autoSave: false });
+      await store.set("language", language);
+      await store.save();
+    } catch (error) {
+      console.error("Failed to save language:", error);
     }
   },
 

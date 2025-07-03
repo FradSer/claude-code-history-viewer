@@ -1,0 +1,200 @@
+{
+  "header": {
+    "title": "Claude Code History Viewer",
+    "subtitle": "Claude Code 대화 기록을 탐색하고 분석하세요"
+  },
+  "settings": {
+    "title": "설정",
+    "folder": "폴더 변경",
+    "theme": "테마",
+    "language": "언어",
+    "update": "업데이트 확인"
+  },
+  "themes": {
+    "light": "라이트",
+    "dark": "다크",
+    "system": "시스템"
+  },
+  "languages": {
+    "ko": "한국어",
+    "en": "English",
+    "zh": "中文"
+  },
+  "navigation": {
+    "projects": "프로젝트",
+    "sessions": "세션",
+    "analytics": "분석 대시보드",
+    "tokenStats": "토큰 통계",
+    "messages": "메시지 보기"
+  },
+  "status": {
+    "projects": "프로젝트: {{count}}개",
+    "sessions": "세션: {{count}}개",
+    "messages": "메시지: {{current}}개",
+    "messagesTotal": "메시지: {{current}}개 / {{total}}개",
+    "sessionTokens": "현재 세션 토큰: {{count, number}}개",
+    "projectTokens": "프로젝트 토큰: {{count, number}}개"
+  },
+  "content": {
+    "selectSession": "세션을 선택해주세요",
+    "selectSessionDesc": "좌측에서 프로젝트와 세션을 선택하면 대화 내용을 볼 수 있습니다",
+    "conversation": "대화 내용",
+    "analyticsTitle": "분석 대시보드",
+    "tokenStatsTitle": "토큰 사용량 통계",
+    "sessionSummaryNotFound": "세션 요약을 찾을 수 없습니다.",
+    "toolsUsed": "도구 사용됨",
+    "normalChat": "일반 대화",
+    "hasErrors": "에러 발생"
+  },
+  "analytics": {
+    "projectAnalysis": "프로젝트 및 세션 상세 분석",
+    "projectOverview": "프로젝트 전체 통계 및 활동 분석",
+    "tokenAnalysis": "프로젝트별 토큰 사용량 분석 및 세션별 상세 통계"
+  },
+  "loading": {
+    "tokenStats": "토큰 통계 로딩 중...",
+    "projects": "프로젝트 스캔 중...",
+    "sessions": "세션 로딩 중...",
+    "messages": "메시지 로딩 중...",
+    "initializing": "앱 초기화 중..."
+  },
+  "messageViewer": {
+    "loadingMessages": "메시지를 불러오는 중...",
+    "noMessages": "메시지가 없습니다",
+    "noMessagesDesc": "왼쪽에서 프로젝트와 세션을 선택하여 대화 내용을 확인하세요.",
+    "user": "사용자",
+    "assistant": "Claude",
+    "system": "시스템",
+    "branch": "분기",
+    "toolResult": "도구 실행 결과:",
+    "loadingPrevious": "이전 메시지를 불러오는 중... ({{current}}/{{total}})",
+    "loadMoreButton": "이전 메시지 {{count}}개 더 보기 ({{current}}/{{total}})",
+    "allLoaded": "모든 메시지를 불러왔습니다 ({{total}}개)",
+    "renderError": "메시지 렌더링 오류",
+    "renderErrorDesc": "콘솔에서 자세한 오류 정보를 확인하세요.",
+    "scrollToBottom": "맨 아래로 이동",
+    "reply": "답글 (depth: {{depth}})",
+    "debug": {
+      "messages": "메시지",
+      "offset": "오프셋",
+      "hasMore": "더 있음",
+      "loading": "로딩중",
+      "session": "세션",
+      "file": "파일",
+      "firstMessage": "첫번째 메시지",
+      "lastMessage": "마지막 메시지"
+    }
+  },
+  "diff": {
+    "changes": "변경 내용:",
+    "advancedAnalysis": "고급 분석",
+    "advancedTextAnalysis": "고급 텍스트 분석",
+    "comparisonMode": "비교 방식:",
+    "lines": "라인 단위",
+    "trimmedLines": "라인 단위 (공백 무시)",
+    "chars": "문자 단위",
+    "words": "단어 단위",
+    "wordsWithSpace": "단어+공백 단위",
+    "sentences": "문장 단위",
+    "added": "추가",
+    "deleted": "삭제",
+    "same": "동일",
+    "manyChanges": "변경사항이 많습니다. 위의 '펼치기' 버튼을 눌러 전체 내용을 확인하세요.",
+    "addedCode": "추가된 코드",
+    "changeStats": "{{count}}개 변경 부분, 총 {{total}}자"
+  },
+  "fileContent": {
+    "title": "파일 내용",
+    "copyFileContent": "파일 내용 복사",
+    "fileEditResult": "파일 편집 결과",
+    "originalFile": "원본 파일",
+    "originalFileContent": "원본 파일 내용",
+    "copyOriginalFile": "원본 파일 복사",
+    "updatedFileContent": "업데이트된 파일 내용",
+    "toolId": "Tool ID"
+  },
+  "projectTree": {
+    "loading": "로딩 중...",
+    "noProjects": "프로젝트를 찾을 수 없습니다",
+    "timeAgo": {
+      "minutes": "{{count}}분 전",
+      "hours": "{{count}}시간 전",
+      "days": "{{count}}일 전"
+    }
+  },
+  "analytics": {
+    "title": "분석 대시보드",
+    "projectTab": "프로젝트 개요",
+    "sessionTab": "세션 상세",
+    "overview": {
+      "totalTokens": "총 토큰",
+      "totalMessages": "총 메시지",
+      "totalSessions": "총 세션",
+      "averageTokensPerMessage": "메시지당 평균 토큰",
+      "totalActiveHours": "총 활동 시간",
+      "averageSessionLength": "평균 세션 길이"
+    },
+    "charts": {
+      "weeklyActivity": "주간 활동 추세",
+      "tokenUsage": "토큰 사용량",
+      "activityHeatmap": "활동 히트맵",
+      "noData": "데이터가 없습니다"
+    },
+    "heatmap": {
+      "days": ["일", "월", "화", "수", "목", "금", "토"],
+      "lowActivity": "낮음",
+      "highActivity": "높음"
+    },
+    "toolUsage": {
+      "title": "도구 사용 통계",
+      "toolName": "도구",
+      "usageCount": "사용 횟수",
+      "successRate": "성공률",
+      "noTools": "도구 사용 데이터가 없습니다"
+    },
+    "sessionComparison": {
+      "title": "세션 비교",
+      "vsAverage": "vs 프로젝트 평균",
+      "higher": "{{percent}}% 높음",
+      "lower": "{{percent}}% 낮음",
+      "same": "평균과 동일"
+    }
+  },
+  "tokenStats": {
+    "title": "토큰 사용량 통계",
+    "sessionTitle": "세션 통계",
+    "projectTitle": "프로젝트 통계",
+    "inputTokens": "입력 토큰",
+    "outputTokens": "출력 토큰",
+    "cacheCreation": "캐시 생성",
+    "cacheRead": "캐시 읽기",
+    "totalTokens": "총 토큰",
+    "messages": "메시지",
+    "firstMessage": "첫 메시지",
+    "lastMessage": "마지막 메시지",
+    "duration": "기간",
+    "averagePerMessage": "메시지당 평균",
+    "noData": "토큰 통계를 사용할 수 없습니다",
+    "topSessions": "토큰 사용량 상위 세션",
+    "recentSessions": "최근 세션",
+    "andMore": "그리고 {{count}}개 세션 더",
+    "sessionsCount": "{{count}}개 세션"
+  },
+  "time": {
+    "lessThanMinute": "< 1분",
+    "minutes": "{{count}}분",
+    "hours": "{{count}}시간",
+    "days": "{{count}}일"
+  },
+  "update": {
+    "versionUpdate": "버전 {{version}} 업데이트",
+    "currentVersion": "현재 버전: {{current}} → {{latest}}",
+    "newVersionAvailable": "새로운 버전이 available합니다.",
+    "updateDeadline": "업데이트 마감일: {{days}}일 남음",
+    "keyChanges": "주요 변경사항:",
+    "skipVersion": "이 버전 건너뛰기",
+    "postpone": "나중에 (7일)",
+    "updateNow": "지금 업데이트",
+    "downloadUpdate": "업데이트 다운로드"
+  }
+}

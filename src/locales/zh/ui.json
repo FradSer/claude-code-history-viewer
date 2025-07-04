@@ -185,5 +185,44 @@
     "minutes": "{{count}}分钟",
     "hours": "{{count}}小时",
     "days": "{{count}}天"
+  },
+  "update": {
+    "versionUpdate": "版本 {{version}} 更新",
+    "currentVersion": "当前版本：{{current}} → {{latest}}",
+    "newVersionAvailable": "有新版本可用。",
+    "updateDeadline": "更新截止日期：还有 {{days}} 天",
+    "keyChanges": "主要变更：",
+    "skipVersion": "跳过此版本",
+    "postpone": "稍后（7天）",
+    "updateNow": "立即更新",
+    "downloadUpdate": "下载更新"
+  },
+  "folderSelector": {
+    "selectClaudeFolder": "选择 .claude 文件夹",
+    "folderSelectError": "文件夹选择失败：",
+    "folderSelectErrorMessage": "选择文件夹时发生错误。\n- 检查文件夹访问权限。\n- 确认 Claude 应用正在运行或重启应用。\n- 确认系统中文件夹路径正确。",
+    "validateError": "在所选文件夹中找不到 Claude 数据。请选择 .claude 文件夹。",
+    "validationFailed": "文件夹验证过程中发生错误。",
+    "goBack": "返回",
+    "changeFolder": "更改 Claude 文件夹",
+    "folderNotFound": "未找到 Claude 文件夹",
+    "changeFolderDesc": "请选择新的 Claude 文件夹或父文件夹。",
+    "folderNotFoundDesc": "在主目录中找不到 .claude 文件夹。请选择 .claude 文件夹或包含它的父文件夹。",
+    "validating": "验证中...",
+    "selectFolder": "选择文件夹",
+    "selectedPath": "选择的路径：{{path}}",
+    "help": "帮助",
+    "helpItems": [
+      "必须至少运行一次 Claude Desktop 应用才能创建文件夹",
+      "Windows: C:\\Users\\[用户名]\\.claude",
+      "macOS/Linux: ~/.claude 或 /Users/[用户名]/.claude",
+      "macOS: /Users/[用户名]/.claude",
+      "Windows: C:\\Users\\[用户名]\\.claude",
+      "Linux: /home/[用户名]/.claude"
+    ]
+  },
+  "upToDate": {
+    "title": "已是最新版本",
+    "message": "当前版本 {{version}} 为最新版本。"
   }
 }

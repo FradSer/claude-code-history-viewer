@@ -147,20 +147,20 @@ export const ProjectTree: React.FC<ProjectTreeProps> = ({
                                     className="font-medium text-gray-800 dark:text-gray-200 text-xs truncate"
                                     title={
                                       session.summary ||
-                                      `세션 ID: ${session.actual_session_id}`
+                                      `${t("hardcoded.sessionId")}: ${session.actual_session_id}`
                                     }
                                   >
                                     {session.summary ||
-                                      "세션 요약을 찾을 수 없습니다."}
+                                      t("hardcoded.sessionSummaryNotFound")}
                                   </h3>
                                   <div className="flex items-center space-x-1">
                                     {session.has_tool_use && (
-                                      <span title="도구 사용">
+                                      <span title={t("hardcoded.toolsUsed")}>
                                         <Wrench className="w-3 h-3 text-blue-400" />
                                       </span>
                                     )}
                                     {session.has_errors && (
-                                      <span title="에러 발생">
+                                      <span title={t("hardcoded.errorOccurred")}>
                                         <AlertTriangle className="w-3 h-3 text-red-400" />
                                       </span>
                                     )}
@@ -173,10 +173,10 @@ export const ProjectTree: React.FC<ProjectTreeProps> = ({
                                   </span>
                                   <span>•</span>
                                   <span className="whitespace-nowrap">
-                                    {session.message_count}개 메시지
+                                    {t("hardcoded.messagesCount", { count: session.message_count })}
                                   </span>
                                   <span>•</span>
-                                  <span className="truncate" title={`실제 세션 ID: ${session.actual_session_id}`}>
+                                  <span className="truncate" title={`${t("hardcoded.actualSessionId")}: ${session.actual_session_id}`}>
                                     ID: {session.actual_session_id.slice(0, 8)}...
                                   </span>
                                 </div>

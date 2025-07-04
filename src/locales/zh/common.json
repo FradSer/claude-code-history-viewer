@@ -10,5 +10,10 @@
   "edit": "编辑",
   "search": "搜索",
   "refresh": "刷新",
-  "retry": "重试"
+  "retry": "重试",
+  "copy": "复制",
+  "copying": "复制中...",
+  "copied": "已复制",
+  "copyFailed": "失败",
+  "clipboardCopyFailed": "剪贴板复制失败："
 }

@@ -316,7 +316,7 @@ function App() {
                 {selectedSession && (
                   <>
                     <span className="mx-2">›</span>
-                    <span>세션 {selectedSession.session_id.slice(-8)}</span>
+                    <span>{t("session.title", { sessionId: selectedSession.session_id.slice(-8) })}</span>
                   </>
                 )}
               </div>
@@ -576,7 +576,7 @@ function App() {
                     <div>
                       <p className={cn("text-sm mt-1", COLORS.ui.text.muted)}>
                         {pagination.totalCount >= messages.length &&
-                          ` ${pagination.totalCount || "-"}개 • `}
+                          ` ${t("message.messagesCount", { count: Number(pagination.totalCount) || 0 })}`}
                         {selectedSession.has_tool_use
                           ? t('ui:content.toolsUsed')
                           : t('ui:content.normalChat')}

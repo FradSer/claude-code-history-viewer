@@ -1,4 +1,5 @@
 import { RefreshCw } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { EnhancedDiffViewer } from "../EnhancedDiffViewer";
 import { FileContent } from "../FileContent";
 import { cn } from "../../utils/cn";
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export const StructuredPatchRenderer = ({ toolResult }: Props) => {
+  const { t } = useTranslation();
   const filePath =
     typeof toolResult.filePath === "string" ? toolResult.filePath : "";
   const content =
@@ -64,7 +66,7 @@ export const StructuredPatchRenderer = ({ toolResult }: Props) => {
       <div className="flex items-center space-x-2 mb-2">
         <RefreshCw className={cn("w-4 h-4", COLORS.tools.task.icon)} />
         <span className={cn("font-medium", COLORS.tools.task.text)}>
-          파일 변경 사항 (Patch)
+          {t("structuredPatch.title")}
         </span>
       </div>
 
@@ -73,7 +75,7 @@ export const StructuredPatchRenderer = ({ toolResult }: Props) => {
         <div
           className={cn("text-xs font-medium mb-1", COLORS.ui.text.tertiary)}
         >
-          파일 경로:
+          {t("structuredPatch.filePath")}
         </div>
         <code
           className={cn(
@@ -92,7 +94,7 @@ export const StructuredPatchRenderer = ({ toolResult }: Props) => {
           <div
             className={cn("text-xs font-medium mb-1", COLORS.ui.text.tertiary)}
           >
-            변경 통계:
+            {t("structuredPatch.changeStatistics")}
           </div>
           <div
             className={cn(
@@ -102,9 +104,9 @@ export const StructuredPatchRenderer = ({ toolResult }: Props) => {
             )}
           >
             <span className={cn("font-medium", COLORS.tools.task.icon)}>
-              {patches.length}개 영역
+              {t("structuredPatch.areasChanged", { count: patches.length })}
             </span>
-            에서 변경사항 발견
+            {t("structuredPatch.changesFound")}
           </div>
         </div>
       )}
@@ -125,10 +127,10 @@ export const StructuredPatchRenderer = ({ toolResult }: Props) => {
           <div
             className={cn("text-xs font-medium mb-2", COLORS.ui.text.tertiary)}
           >
-            업데이트된 파일:
+            {t("structuredPatch.updatedFile")}
           </div>
           <FileContent
-            title="업데이트된 파일 내용"
+            title={t("structuredPatch.updatedContent")}
             fileData={{
               content: content,
               filePath: filePath,

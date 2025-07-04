@@ -1,4 +1,5 @@
 import { Clipboard, Circle, CheckCircle, MinusCircle, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Renderer } from "../../shared/RendererHeader";
 import { COLORS } from "../../constants/colors";
 import { cn } from "../../utils/cn";
@@ -8,6 +9,7 @@ type Props = {
 };
 
 export const TodoUpdateRenderer = ({ todoData }: Props) => {
+  const { t } = useTranslation();
   const newTodos = Array.isArray(todoData.newTodos) ? todoData.newTodos : [];
 
   const getTodoStatusIcon = (status: string) => {
@@ -41,7 +43,7 @@ export const TodoUpdateRenderer = ({ todoData }: Props) => {
       enableToggle={false}
     >
       <Renderer.Header
-        title="할 일 목록 업데이트"
+        title={t("hardcoded.todoListUpdate")}
         icon={<Clipboard className={cn("w-4 h-4", COLORS.tools.search.icon)} />}
         titleClassName={COLORS.tools.search.text}
       />
@@ -54,7 +56,7 @@ export const TodoUpdateRenderer = ({ todoData }: Props) => {
                 COLORS.ui.text.tertiary
               )}
             >
-              현재 상태:
+              {t("hardcoded.currentStatus")}:
             </div>
             <div className="space-y-1">
               {newTodos.map(

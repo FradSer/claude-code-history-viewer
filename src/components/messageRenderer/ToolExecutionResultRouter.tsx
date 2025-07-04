@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Check } from "lucide-react";
 import {
   ClaudeSessionHistoryRenderer,
@@ -31,6 +32,7 @@ interface ToolExecutionResultRouterProps {
 export const ToolExecutionResultRouter: React.FC<
   ToolExecutionResultRouterProps
 > = ({ toolResult }) => {
+  const { t } = useTranslation();
   // Helper function to check if content is JSONL Claude session history
   const isClaudeSessionHistory = (content: string): boolean => {
     try {
@@ -193,7 +195,7 @@ export const ToolExecutionResultRouter: React.FC<
       return <ClaudeSessionHistoryRenderer content={fileData.content} />;
     }
 
-    return <FileContent fileData={fileData} title="파일 내용" />;
+    return <FileContent fileData={fileData} title={t("file.content")} />;
   }
 
   // Handle file edit results
@@ -269,12 +271,12 @@ export const ToolExecutionResultRouter: React.FC<
       hasError={hasError as boolean}
     >
       <Renderer.Header
-        title="도구 실행 결과"
+        title={t("toolResult.title")}
         titleClassName={cn(COLORS.semantic.success.text)}
         icon={<Check className={cn("w-4 h-4", COLORS.semantic.success.icon)} />}
       />
       <Renderer.Content>
-        {/* 메타데이터 정보 */}
+        {/* metadata info */}
         {hasMetadata && (
           <div className="grid grid-cols-2 gap-2 mb-3 text-xs">
             {interrupted !== null && (
@@ -284,7 +286,7 @@ export const ToolExecutionResultRouter: React.FC<
                   COLORS.ui.border.medium
                 )}
               >
-                <div className={cn(COLORS.ui.text.muted)}>실행 상태</div>
+                <div className={cn(COLORS.ui.text.muted)}>{t("status.execution")}</div>
                 <div
                   className={cn(
                     "font-medium",
@@ -293,7 +295,7 @@ export const ToolExecutionResultRouter: React.FC<
                       : COLORS.semantic.success.text
                   )}
                 >
-                  {interrupted ? "중단됨" : "완료"}
+                  {interrupted ? t("status.interrupted") : t("status.completed")}
                 </div>
               </div>
             )}
@@ -304,14 +306,14 @@ export const ToolExecutionResultRouter: React.FC<
                   COLORS.ui.border.medium
                 )}
               >
-                <div className={cn(COLORS.ui.text.muted)}>이미지 결과</div>
+                <div className={cn(COLORS.ui.text.muted)}>{t("output.imageResult")}</div>
                 <div
                   className={cn(
                     "font-medium",
                     isImage ? COLORS.semantic.info.text : COLORS.ui.text.muted
                   )}
                 >
-                  {isImage ? "포함" : "없음"}
+                  {isImage ? t("output.included") : t("output.none")}
                 </div>
               </div>
             )}
@@ -320,14 +322,14 @@ export const ToolExecutionResultRouter: React.FC<
 
         {stdout.length > 0 && (
           <div className="mb-2">
-            <div className={cn(COLORS.ui.text.muted)}>출력:</div>
+            <div className={cn(COLORS.ui.text.muted)}>{t("output.stdout")}:</div>
             <CommandOutputDisplay stdout={stdout} />
           </div>
         )}
 
         {stderr.length > 0 && (
           <div className="mb-2">
-            <div className={cn(COLORS.semantic.error.text)}>에러:</div>
+            <div className={cn(COLORS.semantic.error.text)}>{t("output.error")}:</div>
             <pre
               className={cn(
                 "text-sm whitespace-pre-wrap bg-white p-2 rounded border max-h-96 overflow-y-auto",
@@ -342,7 +344,7 @@ export const ToolExecutionResultRouter: React.FC<
 
         {filePath.length > 0 && (
           <div className={cn(COLORS.ui.text.muted)}>
-            파일:{" "}
+            {t("file.path")}:{" "}
             <code
               className={cn(
                 "px-1 rounded",
@@ -355,14 +357,14 @@ export const ToolExecutionResultRouter: React.FC<
           </div>
         )}
 
-        {/* 출력이 없을 때 상태 표시 */}
+        {/* no output status */}
         {!hasOutput && hasMetadata && (
-          <div className={cn(COLORS.ui.text.muted)}>출력 없음</div>
+          <div className={cn(COLORS.ui.text.muted)}>{t("output.noOutput")}</div>
         )}
 
-        {/* 완전히 빈 결과일 때 */}
+        {/* completely empty result */}
         {!hasOutput && !hasMetadata && (
-          <div className={cn(COLORS.ui.text.muted)}>실행 완료 (출력 없음)</div>
+          <div className={cn(COLORS.ui.text.muted)}>{t("output.executionComplete")}</div>
         )}
       </Renderer.Content>
     </Renderer>

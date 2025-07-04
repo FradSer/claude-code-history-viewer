@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { invoke } from "@tauri-apps/api/core";
 import type { UpdateInfo } from "../types";
 
@@ -11,6 +12,7 @@ interface UpdateState {
 }
 
 export function useUpdateChecker() {
+  const { t } = useTranslation();
   const [state, setState] = useState<UpdateState>({
     updateInfo: null,
     isLoading: false,
@@ -18,6 +20,33 @@ export function useUpdateChecker() {
     showModal: false,
     showUpToDateNotification: false,
   });
+
+  const shouldCheck = useCallback(() => {
+    const lastCheck = localStorage.getItem("last_update_check");
+    const checkInterval = 24 * 60 * 60 * 1000; // 24시간
+
+    return !lastCheck || Date.now() - parseInt(lastCheck) > checkInterval;
+  }, []);
+
+  const saveLastCheckTime = useCallback(() => {
+    localStorage.setItem("last_update_check", Date.now().toString());
+  }, []);
+
+  const isVersionPostponed = useCallback((version: string) => {
+    const postponed = localStorage.getItem("postponed_update");
+    if (!postponed) return false;
+
+    try {
+      const data = JSON.parse(postponed);
+      return data.version === version && Date.now() < data.postponeUntil;
+    } catch {
+      return false;
+    }
+  }, []);
+
+  const isVersionSkipped = useCallback((version: string) => {
+    return localStorage.getItem(`skipped_version_${version}`) === "true";
+  }, []);
 
   const checkForUpdates = useCallback(async (forceCheck = false) => {
     if (!forceCheck && !shouldCheck()) {
@@ -55,37 +84,14 @@ export function useUpdateChecker() {
         saveLastCheckTime();
       }
     } catch (error) {
-      console.error("업데이트 확인 실패:", error);
+      console.error(t("hardcoded.updateCheckFailed") + ":", error);
       setState((prev) => ({
         ...prev,
         error: error as string,
         isLoading: false,
       }));
     }
-  }, []);
-
-  const shouldCheck = useCallback(() => {
-    const lastCheck = localStorage.getItem("last_update_check");
-    const checkInterval = 24 * 60 * 60 * 1000; // 24시간
-
-    return !lastCheck || Date.now() - parseInt(lastCheck) > checkInterval;
-  }, []);
-
-  const saveLastCheckTime = useCallback(() => {
-    localStorage.setItem("last_update_check", Date.now().toString());
-  }, []);
-
-  const isVersionPostponed = useCallback((version: string) => {
-    const postponed = localStorage.getItem("postponed_update");
-    if (!postponed) return false;
-
-    try {
-      const data = JSON.parse(postponed);
-      return data.version === version && Date.now() < data.postponeUntil;
-    } catch {
-      return false;
-    }
-  }, []);
+  }, [t, shouldCheck, saveLastCheckTime, isVersionPostponed, isVersionSkipped]);
 
   const postponeUpdate = useCallback((version: string, days: number = 7) => {
     const postponeData = {
@@ -100,10 +106,6 @@ export function useUpdateChecker() {
   const skipVersion = useCallback((version: string) => {
     localStorage.setItem(`skipped_version_${version}`, "true");
     setState((prev) => ({ ...prev, showModal: false }));
-  }, []);
-
-  const isVersionSkipped = useCallback((version: string) => {
-    return localStorage.getItem(`skipped_version_${version}`) === "true";
   }, []);
 
   const closeModal = useCallback(() => {

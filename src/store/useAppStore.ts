@@ -2,6 +2,8 @@ import { create } from "zustand";
 import { invoke } from "@tauri-apps/api/core";
 import { load } from "@tauri-apps/plugin-store";
 import i18n from '../i18n';
+
+const t = i18n.t.bind(i18n);
 import {
   type AppState,
   type ClaudeProject,
@@ -92,7 +94,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
     try {
       if (!isTauriAvailable()) {
         throw new Error(
-          "Tauri API를 사용할 수 없습니다. 데스크톱 앱에서 실행해주세요."
+          t("hardcoded.tauriNotAvailable")
         );
       }
 
@@ -338,7 +340,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
       return;
     }
 
-    console.log("새로고침 시작:", selectedSession.session_id);
+    console.log(t("hardcoded.refreshStart") + ":", selectedSession.session_id);
 
     // 로딩 상태 설정 (selectSession이 내부적으로 isLoadingMessages를 관리함)
     set({ error: null });
@@ -355,9 +357,9 @@ export const useAppStore = create<AppStore>((set, get) => ({
       
       // 현재 세션을 다시 로드 (첫 페이지부터)
       await get().selectSession(selectedSession, pagination.pageSize);
-      console.log("새로고침 완료");
+      console.log(t("hardcoded.refreshComplete"));
     } catch (error) {
-      console.error("새로고침 실패:", error);
+      console.error(t("hardcoded.refreshFailed") + ":", error);
       set({ error: { type: AppErrorType.UNKNOWN, message: String(error) } });
     }
   },

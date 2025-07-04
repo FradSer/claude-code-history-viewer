@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Folder, AlertCircle } from "lucide-react";
 import { open } from "@tauri-apps/plugin-dialog";
 import { invoke } from "@tauri-apps/api/core";
@@ -16,6 +17,7 @@ export function FolderSelector({
   mode = "notFound",
   onClose,
 }: FolderSelectorProps) {
+  const { t } = useTranslation(['ui']);
   const [selectedPath, setSelectedPath] = useState<string>("");
   const [isValidating, setIsValidating] = useState(false);
   const [validationError, setValidationError] = useState<string>("");
@@ -27,7 +29,7 @@ export function FolderSelector({
       const selected = await open({
         directory: true,
         multiple: false,
-        title: ".claude 폴더 선택",
+        title: t('ui:folderSelector.selectClaudeFolder'),
       });
 
       if (selected && typeof selected === "string") {
@@ -36,10 +38,8 @@ export function FolderSelector({
         await validateAndSelectFolder(selected);
       }
     } catch (err) {
-      console.error("폴더 선택 실패:", err);
-      setValidationError(
-        "폴더를 선택하는 중 오류가 발생했습니다.\n- 폴더 접근 권한을 확인해보세요.\n- Claude 앱이 실행 중인지 확인하거나, 앱을 재시작해보세요.\n- 시스템에서 폴더 경로가 올바른지 확인해보세요."
-      );
+      console.error(t('ui:folderSelector.folderSelectError'), err);
+      setValidationError(t('ui:folderSelector.folderSelectErrorMessage'));
     }
   };
 
@@ -48,18 +48,16 @@ export function FolderSelector({
     setValidationError("");
 
     try {
-      // 선택한 폴더가 .claude 폴더인지 또는 .claude 폴더를 포함하는지 확인
+      // Check if the selected folder is a .claude folder or contains a .claude folder
       const isValid = await invoke<boolean>("validate_claude_folder", { path });
 
       if (isValid) {
         onFolderSelected(path);
       } else {
-        setValidationError(
-          "선택한 폴더에서 Claude 데이터를 찾을 수 없습니다. .claude 폴더를 선택해주세요."
-        );
+        setValidationError(t('ui:folderSelector.validateError'));
       }
     } catch {
-      setValidationError("폴더 검증 중 오류가 발생했습니다.");
+      setValidationError(t('ui:folderSelector.validationFailed'));
     } finally {
       setIsValidating(false);
     }
@@ -88,7 +86,7 @@ export function FolderSelector({
             )}
             type="button"
           >
-            <span className="mr-1">←</span>뒤로 가기
+            <span className="mr-1">←</span>{t('ui:folderSelector.goBack')}
           </button>
         )}
         <div className="text-center">
@@ -100,14 +98,14 @@ export function FolderSelector({
 
           <h1 className={cn("text-2xl font-bold mb-2", COLORS.ui.text.primary)}>
             {isChangeMode
-              ? "Claude 폴더 변경"
-              : "Claude 폴더를 찾을 수 없습니다"}
+              ? t('ui:folderSelector.changeFolder')
+              : t('ui:folderSelector.folderNotFound')}
           </h1>
 
           <p className={cn("mb-8", COLORS.ui.text.secondary)}>
             {isChangeMode
-              ? "새로운 Claude 폴더 또는 상위 폴더를 선택해주세요."
-              : "홈 디렉토리에서 .claude 폴더를 찾을 수 없습니다. .claude 폴더 또는 이를 포함하는 상위 폴더를 선택해주세요."}
+              ? t('ui:folderSelector.changeFolderDesc')
+              : t('ui:folderSelector.folderNotFoundDesc')}
           </p>
 
           <button
@@ -119,7 +117,7 @@ export function FolderSelector({
               COLORS.ui.text.primary
             )}
           >
-            {isValidating ? "확인 중..." : "폴더 선택"}
+            {isValidating ? t('ui:folderSelector.validating') : t('ui:folderSelector.selectFolder')}
           </button>
 
           {selectedPath && (
@@ -130,7 +128,7 @@ export function FolderSelector({
                 COLORS.ui.text.secondary
               )}
             >
-              <p className="truncate">선택한 경로: {selectedPath}</p>
+              <p className="truncate">{t('ui:folderSelector.selectedPath', { path: selectedPath })}</p>
             </div>
           )}
 
@@ -164,7 +162,7 @@ export function FolderSelector({
             )}
           >
             <h3 className={cn("font-semibold mb-2", COLORS.ui.text.primary)}>
-              도움말
+              {t('ui:folderSelector.help')}
             </h3>
             <ul
               className={cn(
@@ -172,14 +170,9 @@ export function FolderSelector({
                 COLORS.ui.text.secondary
               )}
             >
-              <li>
-                • Claude Desktop 앱을 한 번이라도 실행해야 폴더가 생성됩니다
-              </li>
-              <li>• Windows: C:\Users\[사용자명]\.claude</li>
-              <li>• macOS/Linux: ~/.claude 또는 /Users/[사용자명]/.claude</li>
-              <li>• macOS: /Users/[사용자명]/.claude</li>
-              <li>• Windows: C:\Users\[사용자명]\.claude</li>
-              <li>• Linux: /home/[사용자명]/.claude</li>
+              {t('ui:folderSelector.helpItems', { returnObjects: true }).map((item: string, index: number) => (
+                <li key={index}>• {item}</li>
+              ))}
             </ul>
           </div>
         </div>

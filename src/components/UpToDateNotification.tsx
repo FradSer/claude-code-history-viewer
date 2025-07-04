@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { CheckCircle, X } from "lucide-react";
 import { cn } from "../utils/cn";
 import { COLORS } from "../constants/colors";
@@ -15,7 +16,9 @@ export function UpToDateNotification({
   onClose,
   isVisible,
 }: UpToDateNotificationProps) {
-  // 3초 후 자동으로 사라지기
+  const { t } = useTranslation(['ui']);
+  
+  // Auto-hide after 3 seconds
   useEffect(() => {
     if (isVisible) {
       const timer = setTimeout(() => {
@@ -45,10 +48,10 @@ export function UpToDateNotification({
 
           <div className="flex-1 min-w-0">
             <h3 className={cn("text-sm font-semibold", COLORS.ui.text.primary)}>
-              최신 버전입니다
+              {t('ui:upToDate.title')}
             </h3>
             <p className={cn("text-xs mt-1", COLORS.ui.text.secondary)}>
-              현재 버전 {updateInfo.current_version}이 최신 버전입니다.
+              {t('ui:upToDate.message', { version: updateInfo.current_version })}
             </p>
           </div>
 

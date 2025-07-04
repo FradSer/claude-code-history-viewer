@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { Highlight, themes } from "prism-react-renderer";
 import {
   FileText,
@@ -21,6 +22,7 @@ type Props = {
 };
 
 export const ToolUseRenderer = ({ toolUse }: Props) => {
+  const { t } = useTranslation();
   const [openRender, setOpenRender] = useState(false);
   const toolName = toolUse.name || "Unknown Tool";
   const toolId = toolUse.id || "";
@@ -107,7 +109,7 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
           <div className="flex items-center space-x-2">
             <FilePlus className={cn("w-4 h-4", COLORS.semantic.success.icon)} />
             <span className={cn("font-medium", COLORS.semantic.success.text)}>
-              파일 작성
+              {t("toolUse.fileWriting")}
             </span>
           </div>
           {toolId && (
@@ -152,7 +154,7 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
             <CheckCircle
               className={cn("w-4 h-4", COLORS.semantic.success.icon)}
             />
-            <span>작성된 내용</span>
+            <span>{t("toolUse.writtenContent")}</span>
           </div>
           <div
             className={cn(
@@ -259,7 +261,7 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
                   COLORS.semantic.info.text
                 )}
               >
-                📋 작업 설명
+                {t("toolUse.taskDescription")}
               </div>
               <div
                 className={cn(
@@ -281,7 +283,7 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
                   COLORS.semantic.info.text
                 )}
               >
-                💬 상세 지시사항
+                {t("toolUse.detailedInstructions")}
               </div>
               <div
                 className={cn(
@@ -366,7 +368,7 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
               COLORS.ui.text.inverse
             )}
           >
-            도구 입력 매개변수
+            {t("toolUse.inputParameters")}
           </div>
           <Highlight
             theme={themes.vsDark}

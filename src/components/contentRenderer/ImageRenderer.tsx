@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Image, ZoomIn, Download, X } from "lucide-react";
 
 interface ImageRendererProps {
@@ -10,6 +11,7 @@ export const ImageRenderer: React.FC<ImageRendererProps> = ({
   imageUrl,
   alt = "Claude generated image",
 }) => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -41,7 +43,7 @@ export const ImageRenderer: React.FC<ImageRendererProps> = ({
         <div className="flex items-center justify-center mb-2">
           <Image className="w-8 h-8 text-gray-400" />
         </div>
-        <p className="text-sm text-gray-500">이미지를 로드할 수 없습니다</p>
+        <p className="text-sm text-gray-500">{t("imageViewer.cannotLoad")}</p>
         <p className="text-xs text-gray-400 mt-1 break-all">{imageUrl}</p>
       </div>
     );
@@ -54,21 +56,21 @@ export const ImageRenderer: React.FC<ImageRendererProps> = ({
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center space-x-2">
             <Image className="w-4 h-4 text-gray-600" />
-            <span className="text-sm font-medium text-gray-700">이미지</span>
+            <span className="text-sm font-medium text-gray-700">{t("imageViewer.title")}</span>
           </div>
 
           <div className="flex items-center space-x-1">
             <button
               onClick={openModal}
               className="p-1 rounded hover:bg-gray-200 transition-colors"
-              title="전체 화면으로 보기"
+              title={t("imageViewer.viewFullscreen")}
             >
               <ZoomIn className="w-4 h-4 text-gray-600" />
             </button>
             <button
               onClick={handleDownload}
               className="p-1 rounded hover:bg-gray-200 transition-colors"
-              title="이미지 다운로드"
+              title={t("imageViewer.downloadImage")}
             >
               <Download className="w-4 h-4 text-gray-600" />
             </button>

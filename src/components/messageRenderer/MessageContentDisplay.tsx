@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Copy } from "lucide-react";
@@ -14,6 +15,7 @@ export const MessageContentDisplay: React.FC<MessageContentDisplayProps> = ({
   content,
   messageType,
 }) => {
+  const { t } = useTranslation();
   if (!content) return null;
 
   if (typeof content === "string") {
@@ -70,7 +72,7 @@ export const MessageContentDisplay: React.FC<MessageContentDisplayProps> = ({
             <button
               onClick={() => navigator.clipboard.writeText(content)}
               className="p-1 rounded-full transition-colors bg-blue-600 hover:bg-blue-700 text-white"
-              title="메시지 복사하기"
+              title={t("message.copyMessage")}
             >
               <Copy className="w-3 h-3" />
             </button>
@@ -89,7 +91,7 @@ export const MessageContentDisplay: React.FC<MessageContentDisplayProps> = ({
             <button
               onClick={() => navigator.clipboard.writeText(content)}
               className="p-1 rounded-full transition-colors bg-green-600 hover:bg-green-700 text-white"
-              title="메시지 복사하기"
+              title={t("message.copyMessage")}
             >
               <Copy className="w-3 h-3" />
             </button>

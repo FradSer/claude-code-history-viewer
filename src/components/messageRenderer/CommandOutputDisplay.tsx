@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Highlight, themes } from "prism-react-renderer";
 import { Terminal, Package, TestTube, Hammer, BarChart3 } from "lucide-react";
 
@@ -9,6 +10,7 @@ interface CommandOutputDisplayProps {
 export const CommandOutputDisplay: React.FC<CommandOutputDisplayProps> = ({
   stdout,
 }) => {
+  const { t } = useTranslation();
   // 다양한 출력 유형 감지
   const isTestOutput =
     stdout.includes("Test Suites:") ||
@@ -36,7 +38,7 @@ export const CommandOutputDisplay: React.FC<CommandOutputDisplayProps> = ({
       return (
         <div className="bg-white rounded border">
           <div className="bg-gray-800 px-3 py-1 text-xs text-gray-300">
-            JSON 출력
+            {t("output.jsonOutput")}
           </div>
           <Highlight
             theme={themes.vsDark}
@@ -76,7 +78,7 @@ export const CommandOutputDisplay: React.FC<CommandOutputDisplayProps> = ({
       <div className="bg-white rounded border">
         <div className="bg-green-800 px-3 py-1 text-xs text-green-100 flex items-center space-x-2">
           <TestTube className="w-4 h-4" />
-          <span>테스트 결과</span>
+          <span>{t("output.testResults")}</span>
         </div>
         <pre className="text-sm text-gray-700 whitespace-pre-wrap p-3 font-mono">
           {stdout}
@@ -91,7 +93,7 @@ export const CommandOutputDisplay: React.FC<CommandOutputDisplayProps> = ({
       <div className="bg-white rounded border">
         <div className="bg-blue-800 px-3 py-1 text-xs text-blue-100 flex items-center space-x-2">
           <Hammer className="w-4 h-4" />
-          <span>빌드 출력</span>
+          <span>{t("output.buildOutput")}</span>
         </div>
         <div className="max-h-80 overflow-y-auto scrollbar-thin">
           <pre className="text-sm text-gray-700 whitespace-pre-wrap p-3 font-mono">
@@ -108,7 +110,7 @@ export const CommandOutputDisplay: React.FC<CommandOutputDisplayProps> = ({
       <div className="bg-white rounded border">
         <div className="bg-purple-800 px-3 py-1 text-xs text-purple-100 flex items-center space-x-2">
           <Package className="w-4 h-4" />
-          <span>패키지 관리</span>
+          <span>{t("output.packageManagement")}</span>
         </div>
         <div className="max-h-80 overflow-y-auto scrollbar-thin">
           <pre className="text-sm text-gray-700 whitespace-pre-wrap p-3 font-mono">
@@ -125,7 +127,7 @@ export const CommandOutputDisplay: React.FC<CommandOutputDisplayProps> = ({
       <div className="bg-white rounded border">
         <div className="bg-gray-800 px-3 py-1 text-xs text-gray-300 flex items-center space-x-2">
           <BarChart3 className="w-4 h-4" />
-          <span>표 형태 출력</span>
+          <span>{t("output.tableFormat")}</span>
         </div>
         <div className="max-h-80 overflow-y-auto scrollbar-thin">
           <pre className="text-sm text-gray-700 whitespace-pre-wrap p-3 font-mono">
@@ -141,7 +143,7 @@ export const CommandOutputDisplay: React.FC<CommandOutputDisplayProps> = ({
     <div className="bg-white rounded border">
       <div className="bg-gray-800 px-3 py-1 text-xs text-gray-300 flex items-center space-x-2">
         <Terminal className="w-4 h-4" />
-        <span>터미널 출력</span>
+        <span>{t("output.terminalOutput")}</span>
       </div>
       <div className="max-h-80 overflow-y-auto scrollbar-thin">
         <pre className="text-sm text-gray-700 whitespace-pre-wrap p-3 font-mono">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { AdvancedTextDiff } from "./AdvancedTextDiff";
 import { AlignLeft, Columns } from "lucide-react";
 import ReactDiffViewer from "react-diff-viewer-continued";
@@ -30,6 +31,7 @@ export const EnhancedDiffViewer = ({
   filePath = "",
   showAdvancedDiff = false,
 }: Props) => {
+  const { t } = useTranslation();
   const [viewMode, setViewMode] = useState<"visual" | "advanced">("advanced");
   const [splitView, setSplitView] = useState(true);
   const { renderCopyButton } = useCopyButton();
@@ -165,13 +167,13 @@ export const EnhancedDiffViewer = ({
   return (
     <div className="mb-3">
       <div className="flex items-center justify-between mb-2">
-        <div className="text-xs font-medium text-gray-600">변경 내용:</div>
+        <div className="text-xs font-medium text-gray-600">{t("hardcoded.changes")}:</div>
         <div className="flex items-center space-x-2">
           {/* 이후 코드 복사 버튼 */}
           {renderCopyButton(
             newText,
             `diff-new-${filePath || "content"}`,
-            "이후 코드 복사"
+            t("hardcoded.copyAfterCode")
           )}
 
           {showAdvancedDiff && (
@@ -184,7 +186,7 @@ export const EnhancedDiffViewer = ({
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
-                시각적 뷰
+                {t("hardcoded.visualView")}
               </button>
               <button
                 onClick={() => setViewMode("advanced")}
@@ -194,7 +196,7 @@ export const EnhancedDiffViewer = ({
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
-                고급 분석
+                {t("hardcoded.advancedAnalysis")}
               </button>
             </div>
           )}
@@ -202,17 +204,17 @@ export const EnhancedDiffViewer = ({
             <button
               onClick={() => setSplitView(!splitView)}
               className="flex items-center space-x-1 px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded transition-colors"
-              title={splitView ? "통합 뷰로 전환" : "분할 뷰로 전환"}
+              title={splitView ? t("hardcoded.unifiedView") : t("hardcoded.splitView")}
             >
               {splitView ? (
                 <>
                   <AlignLeft className="w-3 h-3" />
-                  <span>통합</span>
+                  <span>{t("hardcoded.unified")}</span>
                 </>
               ) : (
                 <>
                   <Columns className="w-3 h-3" />
-                  <span>분할</span>
+                  <span>{t("hardcoded.split")}</span>
                 </>
               )}
             </button>
@@ -226,8 +228,8 @@ export const EnhancedDiffViewer = ({
             oldValue={oldText}
             newValue={newText}
             splitView={splitView}
-            leftTitle="이전"
-            rightTitle="이후"
+            leftTitle={t("hardcoded.before")}
+            rightTitle={t("hardcoded.after")}
             hideLineNumbers={false}
             renderContent={language !== "text" ? highlightSyntax : undefined}
             styles={{
@@ -241,7 +243,7 @@ export const EnhancedDiffViewer = ({
         <AdvancedTextDiff
           oldText={oldText}
           newText={newText}
-          title="고급 텍스트 분석"
+          title={t("hardcoded.advancedAnalysis")}
         />
       )}
     </div>

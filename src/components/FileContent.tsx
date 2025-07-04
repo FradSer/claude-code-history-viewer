@@ -158,7 +158,7 @@ export const FileContent = ({
             <div className={cn("text-xs", COLORS.semantic.info.text)}>
               {numLines > 0 && totalLines > 0 && (
                 <span>
-                  {startLine}-{startLine + numLines - 1} / {totalLines} 줄
+                  {t("ui:file.lineRange", { startLine, endLine: startLine + numLines - 1, totalLines })}
                 </span>
               )}
             </div>
@@ -172,7 +172,7 @@ export const FileContent = ({
             <div
               className={cn("text-xs font-medium", COLORS.semantic.info.text)}
             >
-              파일 경로:
+              {t("ui:file.path")}
             </div>
             <code
               className={cn(
@@ -191,7 +191,7 @@ export const FileContent = ({
               <div
                 className={cn("text-xs font-medium", COLORS.semantic.info.text)}
               >
-                내용:
+                {t("ui:file.content")}
               </div>
               {shouldCollapse && (
                 <button
@@ -204,11 +204,11 @@ export const FileContent = ({
                 >
                   {isExpanded ? (
                     <>
-                      <span>접기 ▲</span>
+                      <span>{t("common.collapse")}</span>
                     </>
                   ) : (
                     <>
-                      <span>펼치기 ({contentLines.length}줄) ▼</span>
+                      <span>{t("common.expand")} ({contentLines.length}{t("hardcoded.lines")}) ▼</span>
                     </>
                   )}
                 </button>
@@ -226,12 +226,12 @@ export const FileContent = ({
                 <div className="flex items-center space-x-2">
                   {startLine > 1 && (
                     <span className={cn(COLORS.semantic.info.text)}>
-                      시작 줄: {startLine}
+                      {t("ui:file.startLine", { startLine })}
                     </span>
                   )}
                   {shouldCollapse && !isExpanded && (
                     <span className={cn(COLORS.semantic.warning.text)}>
-                      {MAX_LINES}/{contentLines.length} 줄 표시 중
+                      {t("ui:file.showingLines", { current: MAX_LINES, total: contentLines.length })}
                     </span>
                   )}
                 </div>
@@ -336,7 +336,7 @@ export const FileContent = ({
                       )}
                     >
                       <FileText className="w-3 h-3 inline mr-1" />
-                      {contentLines.length - MAX_LINES}줄 더 보기
+                      {t("ui:file.viewMoreLines", { count: contentLines.length - MAX_LINES })}
                     </button>
                   </div>
                 )}
@@ -359,7 +359,7 @@ export const FileContent = ({
                       )}
                     >
                       <FileText className="w-3 h-3 inline mr-1" />
-                      {contentLines.length - MAX_LINES}줄 더 보기
+                      {t("ui:file.viewMoreLines", { count: contentLines.length - MAX_LINES })}
                     </button>
                   </div>
                 )}

@@ -10,5 +10,20 @@
   "edit": "Edit",
   "search": "Search",
   "refresh": "Refresh",
-  "retry": "Retry"
+  "retry": "Retry",
+  "copy": "Copy",
+  "copying": "Copying...",
+  "copied": "Copied",
+  "copyFailed": "Failed",
+  "clipboardCopyFailed": "Clipboard copy failed:",
+  "tokens": "Tokens",
+  "model": "Model",
+  "viewOriginalData": "View Original Data",
+  "noContent": "No content",
+  "included": "Included",
+  "none": "None",
+  "output": "Output:",
+  "file": "File",
+  "collapse": "Collapse ▲",
+  "expand": "Expand ▼"
 }

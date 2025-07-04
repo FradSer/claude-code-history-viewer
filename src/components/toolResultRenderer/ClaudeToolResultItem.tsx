@@ -1,6 +1,7 @@
 "use client";
 
 import { Check, FileText, AlertTriangle, Folder, File } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Highlight, themes } from "prism-react-renderer";
@@ -15,6 +16,7 @@ type Props = {
 };
 
 export const ClaudeToolResultItem = ({ toolResult, index }: Props) => {
+  const { t } = useTranslation();
   const { renderCopyButton } = useCopyButton();
   const toolUseId = toolResult.tool_use_id || "";
   const content = toolResult.content || "";
@@ -236,7 +238,7 @@ export const ClaudeToolResultItem = ({ toolResult, index }: Props) => {
                     </div>
                   )}
                 </div>
-                {renderCopyButton(filePath, `file-path-${idx}`, "경로 복사")}
+                {renderCopyButton(filePath, `file-path-${idx}`, t("hardcoded.copyPath"))}
               </div>
             );
           })}
@@ -261,14 +263,14 @@ export const ClaudeToolResultItem = ({ toolResult, index }: Props) => {
         hasError={isError}
       >
         <Renderer.Header
-          title="파일 내용"
+          title={t("file.content")}
           icon={
             <FileText className={cn("w-4 h-4", COLORS.semantic.success.icon)} />
           }
           titleClassName={cn(COLORS.semantic.success.text)}
           rightContent={
             <div className="flex items-center space-x-2">
-              {renderCopyButton(code, `tool-result-code-${index}`, "코드 복사")}
+              {renderCopyButton(code, `tool-result-code-${index}`, t("hardcoded.copyCode"))}
               {toolUseId && (
                 <code
                   className={cn(
@@ -277,7 +279,7 @@ export const ClaudeToolResultItem = ({ toolResult, index }: Props) => {
                     COLORS.ui.text.secondary
                   )}
                 >
-                  Tool ID: {String(toolUseId)}
+                  {t("toolResult.toolId")}: {String(toolUseId)}
                 </code>
               )}
             </div>
@@ -304,7 +306,7 @@ export const ClaudeToolResultItem = ({ toolResult, index }: Props) => {
             >
               <span>{language}</span>
               <span className={cn(COLORS.ui.text.muted)}>
-                {code.split("\n").length} 줄
+                {code.split("\n").length} {t("hardcoded.lines")}
               </span>
             </div>
             <Highlight
@@ -368,7 +370,7 @@ export const ClaudeToolResultItem = ({ toolResult, index }: Props) => {
         hasError={isError}
       >
         <Renderer.Header
-          title="파일 검색 결과"
+          title={t("file.searchResults")}
           icon={
             <Folder className={cn("w-4 h-4", COLORS.semantic.success.icon)} />
           }
@@ -378,7 +380,7 @@ export const ClaudeToolResultItem = ({ toolResult, index }: Props) => {
               {renderCopyButton(
                 cleanContent,
                 `file-search-result-${index}`,
-                "결과 복사"
+                t("hardcoded.copyResult")
               )}
               {toolUseId && (
                 <code
@@ -388,7 +390,7 @@ export const ClaudeToolResultItem = ({ toolResult, index }: Props) => {
                     COLORS.ui.text.secondary
                   )}
                 >
-                  Tool ID: {String(toolUseId)}
+                  {t("toolResult.toolId")}: {String(toolUseId)}
                 </code>
               )}
             </div>
@@ -409,7 +411,7 @@ export const ClaudeToolResultItem = ({ toolResult, index }: Props) => {
       hasError={isError}
     >
       <Renderer.Header
-        title="도구 실행 결과"
+        title={t("toolResult.title")}
         icon={<Check className={cn("w-4 h-4", COLORS.semantic.success.icon)} />}
         titleClassName={cn(COLORS.semantic.success.text)}
         rightContent={

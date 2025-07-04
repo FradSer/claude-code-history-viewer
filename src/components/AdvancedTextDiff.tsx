@@ -129,7 +129,7 @@ export const AdvancedTextDiff = ({
             onClick={() => setIsExpanded(!isExpanded)}
             className="text-xs px-2 py-1 bg-amber-100 hover:bg-amber-200 text-amber-700 rounded transition-colors"
           >
-            {isExpanded ? "접기 ▲" : "펼치기 ▼"}
+            {isExpanded ? t("common.collapse") + " ▲" : t("common.expand") + " ▼"}
           </button>
         )}
       </div>

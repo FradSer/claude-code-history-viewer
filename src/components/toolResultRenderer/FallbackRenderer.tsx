@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Highlight, themes } from "prism-react-renderer";
 import { Renderer } from "../../shared/RendererHeader";
 import { cn } from "../../utils/cn";
@@ -9,12 +10,13 @@ type Props = {
 };
 
 export const FallbackRenderer = ({ toolResult }: Props) => {
+  const { t } = useTranslation();
   return (
     <Renderer
       className={cn(COLORS.ui.background.primary, COLORS.ui.border.light)}
     >
       <Renderer.Header
-        title="도구 실행 결과"
+        title={t("toolResult.title")}
         icon={<Check className={cn(COLORS.ui.text.muted)} />}
         titleClassName={cn(COLORS.ui.text.secondary)}
       />

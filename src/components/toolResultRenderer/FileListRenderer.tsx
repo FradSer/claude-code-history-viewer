@@ -1,4 +1,5 @@
 import { FileText } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Renderer } from "../../shared/RendererHeader";
 import { cn } from "../../utils/cn";
 import { COLORS } from "../../constants/colors";
@@ -8,10 +9,11 @@ type Props = {
 };
 
 export const FileListRenderer = ({ toolResult }: Props) => {
+  const { t } = useTranslation();
   return (
     <Renderer className={cn(COLORS.tools.file.bg, COLORS.tools.file.border)}>
       <Renderer.Header
-        title={`파일 목록 (${toolResult.numFiles}개)`}
+        title={t("file.listWithCount", { count: Number(toolResult.numFiles) || 0 })}
         icon={<FileText className={cn("w-4 h-4", COLORS.tools.file.icon)} />}
         titleClassName={COLORS.tools.file.text}
       />

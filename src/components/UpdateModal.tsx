@@ -6,6 +6,7 @@ import {
   CheckCircle,
   Info,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { cn } from "../utils/cn";
 import { COLORS } from "../constants/colors";
 import type { UpdateInfo } from "../types";
@@ -27,6 +28,8 @@ export function UpdateModal({
   onClose,
   isVisible,
 }: UpdateModalProps) {
+  const { t } = useTranslation(['ui']);
+  
   if (!isVisible || !updateInfo.has_update) return null;
 
   const { metadata, latest_version, download_url, release_url } = updateInfo;
@@ -118,10 +121,10 @@ export function UpdateModal({
               <h2
                 className={cn("text-xl font-semibold", COLORS.ui.text.primary)}
               >
-                {metadata?.message.title || `버전 ${latest_version} 업데이트`}
+                {metadata?.message.title || t('ui:update.versionUpdate', { version: latest_version })}
               </h2>
               <p className={cn("text-sm mt-1", COLORS.ui.text.secondary)}>
-                현재 버전: {updateInfo.current_version} → {latest_version}
+                {t('ui:update.currentVersion', { current: updateInfo.current_version, latest: latest_version })}
               </p>
             </div>
           </div>
@@ -142,7 +145,7 @@ export function UpdateModal({
         {/* Content */}
         <div className="px-6 pb-2">
           <p className={cn("text-sm", COLORS.ui.text.secondary)}>
-            {metadata?.message.description || "새로운 버전이 available합니다."}
+            {metadata?.message.description || t('ui:update.newVersionAvailable')}
           </p>
 
           {/* Deadline Warning */}
@@ -157,7 +160,7 @@ export function UpdateModal({
                 <div className="flex items-center space-x-2">
                   <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                   <span className="text-sm font-medium text-amber-800 dark:text-amber-300">
-                    업데이트 마감일: {updateInfo.days_until_deadline}일 남음
+                    {t('ui:update.updateDeadline', { days: updateInfo.days_until_deadline })}
                   </span>
                 </div>
               </div>
@@ -173,7 +176,7 @@ export function UpdateModal({
                     COLORS.ui.text.primary
                   )}
                 >
-                  주요 변경사항:
+                  {t('ui:update.keyChanges')}
                 </h4>
                 <ul className="space-y-1">
                   {metadata.message.features.map((feature, index) => (
@@ -205,7 +208,7 @@ export function UpdateModal({
                     "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                   )}
                 >
-                  이 버전 건너뛰기
+                  {t('ui:update.skipVersion')}
                 </button>
 
                 <button
@@ -216,7 +219,7 @@ export function UpdateModal({
                     "hover:bg-gray-50 dark:hover:bg-gray-800"
                   )}
                 >
-                  나중에 (7일)
+                  {t('ui:update.postpone')}
                 </button>
               </>
             )}
@@ -230,7 +233,7 @@ export function UpdateModal({
               )}
             >
               <Download className="w-4 h-4" />
-              <span>{isCritical ? "지금 업데이트" : "업데이트 다운로드"}</span>
+              <span>{isCritical ? t('ui:update.updateNow') : t('ui:update.downloadUpdate')}</span>
             </button>
           </div>
         </div>

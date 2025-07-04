@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { RefreshCw, Check, X, Clipboard } from "lucide-react";
 
 interface CopyState {
@@ -6,10 +7,11 @@ interface CopyState {
 }
 
 export const useCopyButton = () => {
-  // 클립보드 복사 상태 관리
+  const { t } = useTranslation(['common']);
+  // Clipboard copy state management
   const [copyStates, setCopyStates] = useState<CopyState>({});
 
-  // 클립보드 복사 헬퍼 함수
+  // Clipboard copy helper function
   const copyToClipboard = async (text: string, id: string) => {
     setCopyStates((prev) => ({ ...prev, [id]: "copying" }));
 
@@ -17,26 +19,26 @@ export const useCopyButton = () => {
       await navigator.clipboard.writeText(text);
       setCopyStates((prev) => ({ ...prev, [id]: "success" }));
 
-      // 2초 후 상태 초기화
+      // Reset state after 2 seconds
       setTimeout(() => {
         setCopyStates((prev) => ({ ...prev, [id]: "idle" }));
       }, 2000);
     } catch (error) {
-      console.error("클립보드 복사 실패:", error);
+      console.error(t('common:clipboardCopyFailed'), error);
       setCopyStates((prev) => ({ ...prev, [id]: "error" }));
 
-      // 2초 후 상태 초기화
+      // Reset state after 2 seconds
       setTimeout(() => {
         setCopyStates((prev) => ({ ...prev, [id]: "idle" }));
       }, 2000);
     }
   };
 
-  // 복사 버튼 렌더링 헬퍼
+  // Copy button rendering helper
   const renderCopyButton = (
     text: string,
     id: string,
-    label: string = "복사"
+    label: string = t('common:copy')
   ) => {
     const state = copyStates[id] || "idle";
 
@@ -51,22 +53,22 @@ export const useCopyButton = () => {
             ? "bg-red-100 text-red-700"
             : "bg-gray-100 hover:bg-gray-200 text-gray-700"
         }`}
-        title={`${label}하기`}
+        title={`${label}`}
       >
         {state === "copying" ? (
           <>
             <RefreshCw className="w-3 h-3 animate-spin" />
-            <span>복사 중...</span>
+            <span>{t('common:copying')}</span>
           </>
         ) : state === "success" ? (
           <>
             <Check className="w-3 h-3" />
-            <span>복사됨</span>
+            <span>{t('common:copied')}</span>
           </>
         ) : state === "error" ? (
           <>
             <X className="w-3 h-3" />
-            <span>실패</span>
+            <span>{t('common:copyFailed')}</span>
           </>
         ) : (
           <>

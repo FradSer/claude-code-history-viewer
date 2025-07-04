@@ -376,6 +376,27 @@
     "changes": "变更",
     "copyAfterCode": "复制修改后代码",
     "visualView": "可视化视图",
-    "advancedAnalysis": "高级分析"
+    "advancedAnalysis": "高级分析",
+    "updateCheckFailed": "更新检查失败",
+    "todoListUpdate": "待办事项列表更新",
+    "currentStatus": "当前状态",
+    "typeUnknown": "类型未知",
+    "type": "类型",
+    "unknownResultFormat": "未知结果格式",
+    "sessionId": "会话 ID",
+    "sessionSummaryNotFound": "未找到会话摘要",
+    "toolsUsed": "已使用工具",
+    "errorOccurred": "发生错误",
+    "actualSessionId": "实际会话 ID",
+    "terminal": "终端",
+    "unifiedView": "统一视图",
+    "splitView": "分割视图",
+    "unified": "统一",
+    "split": "分割",
+    "before": "之前",
+    "after": "之后",
+    "unknownContentType": "未知内容类型",
+    "messagesCount": "{{count}} 条消息",
+    "filesCount": "{{count}} 个文件"
   }
 }

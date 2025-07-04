@@ -170,7 +170,7 @@ export function FolderSelector({
                 COLORS.ui.text.secondary
               )}
             >
-              {t('ui:folderSelector.helpItems', { returnObjects: true }).map((item: string, index: number) => (
+              {(t('ui:folderSelector.helpItems', { returnObjects: true }) as string[]).map((item: string, index: number) => (
                 <li key={index}>• {item}</li>
               ))}
             </ul>

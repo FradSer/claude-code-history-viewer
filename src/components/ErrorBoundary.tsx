@@ -206,7 +206,7 @@ ${t('errors:errorBoundary.occurredAt')}: ${new Date().toISOString()}
             {t('errors:errorBoundary.troubleshooting')}
           </h4>
           <ul className={cn("space-y-1", COLORS.ui.text.secondary)}>
-            {t('errors:errorBoundary.troubleshootingSteps', { returnObjects: true }).map((step: string, index: number) => (
+            {(t('errors:errorBoundary.troubleshootingSteps', { returnObjects: true }) as string[]).map((step: string, index: number) => (
               <li key={index}>• {step}</li>
             ))}
           </ul>

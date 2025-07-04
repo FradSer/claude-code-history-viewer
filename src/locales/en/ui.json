@@ -423,6 +423,27 @@
     "changes": "Changes",
     "copyAfterCode": "Copy After Code",
     "visualView": "Visual View",
-    "advancedAnalysis": "Advanced Analysis"
+    "advancedAnalysis": "Advanced Analysis",
+    "updateCheckFailed": "Update check failed",
+    "todoListUpdate": "TODO List Update",
+    "currentStatus": "Current Status",
+    "typeUnknown": "Type Unknown",
+    "type": "Type",
+    "unknownResultFormat": "Unknown result format",
+    "sessionId": "Session ID",
+    "sessionSummaryNotFound": "Session summary not found",
+    "toolsUsed": "Tools used",
+    "errorOccurred": "Error occurred",
+    "actualSessionId": "Actual Session ID",
+    "terminal": "Terminal",
+    "unifiedView": "Unified View",
+    "splitView": "Split View",
+    "unified": "Unified",
+    "split": "Split",
+    "before": "Before",
+    "after": "After",
+    "unknownContentType": "Unknown content type",
+    "messagesCount": "{{count}} messages",
+    "filesCount": "{{count}} files"
   }
 }

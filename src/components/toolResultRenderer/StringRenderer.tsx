@@ -15,8 +15,8 @@ type Props = {
 };
 
 export const StringRenderer = ({ result, title }: Props) => {
-  const { t } = useTranslation();
-  // 파일 트리나 디렉토리 구조인지 확인
+  const { t } = useTranslation(['ui', 'common']);
+  // Check if it's a file tree or directory structure
   const isFileTree =
     result.includes("/") &&
     (result.includes("- ") || result.includes("├") || result.includes("└"));
@@ -31,9 +31,9 @@ export const StringRenderer = ({ result, title }: Props) => {
     return t("toolResult.title");
   };
 
-  // 접기/펼치기 상태 관리
+  // Manage expand/collapse state
   const [isExpanded, setIsExpanded] = useState(false);
-  const MAX_LINES = 15; // 최대 표시 줄 수
+  const MAX_LINES = 15; // Maximum number of lines to display
   const resultLines = result.split("\n");
   const shouldCollapse = resultLines.length > MAX_LINES;
   const displayResult =

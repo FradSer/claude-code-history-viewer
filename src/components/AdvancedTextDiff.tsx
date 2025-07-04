@@ -26,7 +26,7 @@ export const AdvancedTextDiff = ({
   diffMode = "lines",
   title,
 }: Props) => {
-  const { t } = useTranslation(['ui']);
+  const { t } = useTranslation(['ui', 'common']);
   const [currentMode, setCurrentMode] = useState<DiffMode>(diffMode);
   const [isExpanded, setIsExpanded] = useState(false);
   
@@ -129,7 +129,7 @@ export const AdvancedTextDiff = ({
             onClick={() => setIsExpanded(!isExpanded)}
             className="text-xs px-2 py-1 bg-amber-100 hover:bg-amber-200 text-amber-700 rounded transition-colors"
           >
-            {isExpanded ? t("common.collapse") + " ▲" : t("common.expand") + " ▼"}
+            {isExpanded ? t("common.collapse") : t("common.expand")}
           </button>
         )}
       </div>

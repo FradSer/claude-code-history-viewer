@@ -47,9 +47,101 @@
     "hasErrors": "Errors occurred"
   },
   "analytics": {
+    "title": "Analytics Dashboard",
     "projectAnalysis": "Detailed project and session analysis",
     "projectOverview": "Project overview statistics and activity analysis",
-    "tokenAnalysis": "Project token usage analysis and detailed session statistics"
+    "tokenAnalysis": "Project token usage analysis and detailed session statistics",
+    "projectTab": "Project Overview",
+    "sessionTab": "Session Details",
+    "overview": {
+      "totalTokens": "Total Tokens",
+      "totalMessages": "Total Messages",
+      "totalSessions": "Total Sessions",
+      "averageTokensPerMessage": "Avg Tokens/Message",
+      "totalActiveHours": "Total Active Hours",
+      "averageSessionLength": "Avg Session Length"
+    },
+    "charts": {
+      "weeklyActivity": "Weekly Activity Trend",
+      "tokenUsage": "Token Usage",
+      "activityHeatmap": "Activity Heatmap",
+      "noData": "No data available",
+      "weeklyTrend": "Weekly Activity Trend",
+      "tokenDistribution": "Token Type Distribution",
+      "performanceInsights": "🎯 Performance Insights",
+      "sessionTimeline": "⏱️ Session Timeline",
+      "tokenAnalysis": "💾 Token Usage Analysis"
+    },
+    "heatmap": {
+      "days": [
+        "Sun",
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "lowActivity": "Low",
+      "highActivity": "High"
+    },
+    "toolUsage": {
+      "title": "Tool Usage Statistics",
+      "toolName": "Tool",
+      "usageCount": "Usage Count",
+      "successRate": "Success Rate",
+      "noTools": "No tool usage data available"
+    },
+    "sessionComparison": {
+      "title": "Session Comparison",
+      "vsAverage": "vs Project Average",
+      "higher": "{{percent}}% higher",
+      "lower": "{{percent}}% lower",
+      "same": "Same as average"
+    },
+    "labels": {
+      "dailyTokens": "Daily Avg Tokens",
+      "dailyMessages": "Daily Avg Messages",
+      "weeklyDays": "Weekly Active Days",
+      "today": "Today",
+      "highActivity": "High Activity",
+      "weekend": "Weekend",
+      "totalUsage": "Total Usage",
+      "aboveAverage": "Above Average",
+      "belowAverage": "Below Average",
+      "tokenRank": "Token Rank",
+      "top": "Top",
+      "projectShare": "Project Share",
+      "tokensPerMessage": "Tokens per Message",
+      "sessionDuration": "Session Duration",
+      "minutes": "minutes",
+      "rank": "Rank",
+      "startTime": "Start Time",
+      "duration": "Duration",
+      "endTime": "End Time",
+      "sessionRank": "Session Rank",
+      "avgSession": "Avg Session",
+      "activeHour": "Most Active Hour",
+      "hour": "{{hour}}:00"
+    },
+    "tools": {
+      "Bash": "🐚 Terminal",
+      "Read": "📖 File Read",
+      "Edit": "✏️ File Edit",
+      "Write": "📝 File Create",
+      "MultiEdit": "🔧 Multi Edit",
+      "Glob": "🔍 File Search",
+      "Grep": "🔎 Text Search",
+      "LS": "📁 Directory Browse",
+      "Task": "🎯 Task Execute",
+      "WebFetch": "🌐 Web Fetch",
+      "WebSearch": "🔍 Web Search",
+      "NotebookRead": "📚 Notebook Read",
+      "NotebookEdit": "📝 Notebook Edit",
+      "TodoRead": "📋 Todo Read",
+      "TodoWrite": "✅ Todo Write",
+      "exit_plan_mode": "🚪 Exit Plan Mode"
+    }
   },
   "loading": {
     "tokenStats": "Loading token statistics...",
@@ -103,16 +195,6 @@
     "addedCode": "Added Code",
     "changeStats": "{{count}} changes, {{total}} characters total"
   },
-  "fileContent": {
-    "title": "File Content",
-    "copyFileContent": "Copy File Content",
-    "fileEditResult": "File Edit Result",
-    "originalFile": "Original File",
-    "originalFileContent": "Original File Content",
-    "copyOriginalFile": "Copy Original File",
-    "updatedFileContent": "Updated File Content",
-    "toolId": "Tool ID"
-  },
   "projectTree": {
     "loading": "Loading...",
     "noProjects": "No projects found",
@@ -120,94 +202,6 @@
       "minutes": "{{count}} minutes ago",
       "hours": "{{count}} hours ago",
       "days": "{{count}} days ago"
-    }
-  },
-  "analytics": {
-    "title": "Analytics Dashboard",
-    "projectTab": "Project Overview",
-    "sessionTab": "Session Details",
-    "overview": {
-      "totalTokens": "Total Tokens",
-      "totalMessages": "Total Messages",
-      "totalSessions": "Total Sessions",
-      "averageTokensPerMessage": "Avg Tokens/Message",
-      "totalActiveHours": "Total Active Hours",
-      "averageSessionLength": "Avg Session Length"
-    },
-    "charts": {
-      "weeklyActivity": "Weekly Activity Trend",
-      "tokenUsage": "Token Usage",
-      "activityHeatmap": "Activity Heatmap",
-      "noData": "No data available"
-    },
-    "heatmap": {
-      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      "lowActivity": "Low",
-      "highActivity": "High"
-    },
-    "toolUsage": {
-      "title": "Tool Usage Statistics",
-      "toolName": "Tool",
-      "usageCount": "Usage Count",
-      "successRate": "Success Rate",
-      "noTools": "No tool usage data available"
-    },
-    "sessionComparison": {
-      "title": "Session Comparison",
-      "vsAverage": "vs Project Average",
-      "higher": "{{percent}}% higher",
-      "lower": "{{percent}}% lower",
-      "same": "Same as average"
-    },
-    "charts": {
-      "weeklyTrend": "Weekly Activity Trend",
-      "tokenDistribution": "Token Type Distribution",
-      "performanceInsights": "🎯 Performance Insights",
-      "sessionTimeline": "⏱️ Session Timeline",
-      "tokenAnalysis": "💾 Token Usage Analysis"
-    },
-    "labels": {
-      "dailyTokens": "Daily Avg Tokens",
-      "dailyMessages": "Daily Avg Messages",
-      "weeklyDays": "Weekly Active Days",
-      "today": "Today",
-      "highActivity": "High Activity",
-      "weekend": "Weekend",
-      "totalUsage": "Total Usage",
-      "aboveAverage": "Above Average",
-      "belowAverage": "Below Average",
-      "tokenRank": "Token Rank",
-      "top": "Top",
-      "projectShare": "Project Share",
-      "tokensPerMessage": "Tokens per Message",
-      "sessionDuration": "Session Duration",
-      "minutes": "minutes",
-      "rank": "Rank",
-      "startTime": "Start Time",
-      "duration": "Duration",
-      "endTime": "End Time",
-      "sessionRank": "Session Rank",
-      "avgSession": "Avg Session",
-      "activeHour": "Most Active Hour",
-      "hour": "{{hour}}:00"
-    },
-    "tools": {
-      "Bash": "🐚 Terminal",
-      "Read": "📖 File Read",
-      "Edit": "✏️ File Edit",
-      "Write": "📝 File Create",
-      "MultiEdit": "🔧 Multi Edit",
-      "Glob": "🔍 File Search",
-      "Grep": "🔎 Text Search",
-      "LS": "📁 Directory Browse",
-      "Task": "🎯 Task Execute",
-      "WebFetch": "🌐 Web Fetch",
-      "WebSearch": "🔍 Web Search",
-      "NotebookRead": "📚 Notebook Read",
-      "NotebookEdit": "📝 Notebook Edit",
-      "TodoRead": "📋 Todo Read",
-      "TodoWrite": "✅ Todo Write",
-      "exit_plan_mode": "🚪 Exit Plan Mode"
     }
   },
   "tokenStats": {
@@ -277,361 +271,158 @@
     "title": "Up to date",
     "message": "Current version {{version}} is the latest version."
   },
-  "hardcoded": {
-    "tauriNotAvailable": "Tauri API is not available. Please run in the desktop app.",
-    "refreshStart": "Refresh started",
-    "refreshComplete": "Refresh complete",
-    "refreshFailed": "Refresh failed",
-    "updateCheckFailed": "Update check failed",
-    "sessionId": "Session ID",
-    "sessionSummaryNotFound": "Session summary not found.",
-    "toolsUsed": "Tools used",
-    "errorOccurred": "Error occurred",
-    "messagesCount": "{{count}} messages",
-    "actualSessionId": "Actual Session ID",
-    "lines": "lines",
-    "fileContent": "File Content",
-    "copyFileContent": "Copy File Content",
-    "originalFile": "Original File",
-    "originalFileContent": "Original File Content",
-    "copyOriginalFile": "Copy Original File",
-    "updatedFileContent": "Updated File Content",
-    "collapse": "Collapse",
-    "expand": "Expand",
-    "showMore": "Show More",
-    "filePath": "File Path",
-    "content": "Content",
-    "startLine": "Start Line",
+  "session": {
+    "title": "Session {{sessionId}}"
+  },
+  "file": {
+    "lineRange": "{{startLine}}-{{endLine}} / {{totalLines}} lines",
+    "path": "File Path:",
+    "content": "Content:",
+    "startLine": "Start Line: {{startLine}}",
     "showingLines": "Showing {{current}}/{{total}} lines",
-    "showMoreLines": "Show {{count}} more lines",
-    "jsonOutput": "JSON Output",
-    "testResult": "Test Result",
-    "buildOutput": "Build Output",
-    "packageManagement": "Package Management",
-    "tableOutput": "Table Output",
-    "terminalOutput": "Terminal Output",
-    "changes": "Changes",
-    "copyAfterCode": "Copy After Code",
-    "visualView": "Visual View",
-    "advancedAnalysis": "Advanced Analysis",
-    "unifiedView": "Switch to Unified View",
-    "splitView": "Switch to Split View",
-    "unified": "Unified",
-    "split": "Split",
-    "before": "Before",
-    "after": "After",
-    "fileWriting": "File Writing",
-    "fileEditing": "File Editing",
-    "writtenContent": "Written Content",
-    "removedCode": "Removed Code",
-    "addedCode": "Added Code",
-    "toolInputParameters": "Tool Input Parameters",
-    "taskDescription": "Task Description",
-    "detailedInstructions": "Detailed Instructions",
-    "chatHistory": "Chat History",
-    "noValidChatMessages": "No valid chat messages.",
-    "chatHistoryCount": "Chat History ({{count}} messages)",
-    "user": "User",
-    "claude": "Claude",
-    "noContent": "No content",
-    "tokens": "Tokens",
-    "model": "Model",
-    "chatHistoryParsingError": "Chat History Parsing Error",
-    "chatDataParsingError": "An error occurred while parsing chat data.",
-    "viewOriginalData": "View Original Data",
-    "copyMessage": "Copy Message",
-    "imageCannotLoad": "Cannot load image",
-    "image": "Image",
-    "viewFullscreen": "View Fullscreen",
-    "downloadImage": "Download Image",
-    "closeButton": "Close Button",
-    "downloadButton": "Download Button",
-    "toolExecutionError": "Tool Execution Error",
-    "unknownContentType": "Unknown content type",
-    "sessionShort": "Session",
+    "viewMoreLines": "View {{count}} more lines",
+    "structure": "File Structure",
+    "editResult": "File Edit Result",
+    "originalContent": "Original File Content",
+    "updatedContent": "Updated File Content",
+    "searchResults": "File Search Results",
+    "listWithCount": "File List ({{count}} files)"
+  },
+  "chatHistory": {
+    "title": "Chat History",
+    "noValidMessages": "No valid chat messages.",
+    "titleWithCount": "Chat History ({{count}} messages)",
+    "userType": "User",
+    "assistantType": "Claude",
+    "parseError": "Chat History Parse Error",
+    "parseErrorMessage": "An error occurred while parsing chat data."
+  },
+  "toolResult": {
+    "title": "Tool Execution Result",
     "executionTime": "Execution Time",
-    "seconds": "seconds",
     "totalTokens": "Total Tokens",
     "toolUsageCount": "Tool Usage Count",
-    "interrupted": "Interrupted",
-    "completed": "Completed",
-    "tokenUsage": "Token Usage",
-    "input": "Input",
-    "output": "Output",
-    "cacheCreation": "Cache Creation",
-    "cacheRead": "Cache Read",
-    "claudeThinkingProcess": "Claude's Thinking Process",
-    "commandExecution": "Command Execution",
-    "command": "Command",
-    "arguments": "Arguments",
-    "status": "Status",
-    "errorOutput": "Error Output",
-    "executionResult": "Execution Result",
-    "fileEditResult": "File Edit Result",
+    "interruptedStatus": "Interrupted Status",
+    "tokenUsage": "Token Usage:",
+    "imageResult": "Image Result",
+    "noOutput": "No output",
+    "completedNoOutput": "Execution complete (no output)",
     "executionStatus": "Execution Status",
+    "claudeApiResponse": "Claude API Response",
+    "toolId": "Tool ID",
+    "executionError": "Tool Execution Error"
+  },
+  "output": {
+    "jsonOutput": "JSON Output",
+    "testResults": "Test Results",
+    "buildOutput": "Build Output",
+    "packageManagement": "Package Management",
+    "tableFormat": "Table Format Output",
+    "terminalOutput": "Terminal Output",
+    "stdout": "Output",
+    "error": "Error",
     "imageResult": "Image Result",
     "included": "Included",
     "none": "None",
-    "outputColon": "Output:",
-    "errorColon": "Error:",
-    "file": "File",
     "noOutput": "No output",
-    "executionCompleteNoOutput": "Execution complete (no output)",
-    "fileChanges": "File Changes",
-    "changeStatistics": "Change Statistics",
-    "changesFound": "changes found in",
-    "areasChanged": "{{count}} areas",
-    "updatedFile": "Updated File",
-    "fileStructure": "File Structure",
-    "toolExecutionResult": "Tool Execution Result",
-    "fileList": "File List",
-    "filesCount": "{{count}} files",
-    "codebaseContext": "Codebase Context",
-    "analyzedFiles": "Analyzed Files",
-    "contextWindow": "Context Window",
-    "relevantFiles": "Relevant Files",
-    "andMoreFiles": "...and {{count}} more files",
-    "terminal": "Terminal",
-    "mcpToolCall": "MCP Tool Call",
+    "executionComplete": "Execution complete (no output)"
+  },
+  "status": {
+    "interrupted": "Interrupted",
+    "completed": "Completed",
+    "execution": "Execution Status"
+  },
+  "tokens": {
+    "input": "Input:",
+    "output": "Output:",
+    "cacheCreation": "Cache Creation:",
+    "cacheRead": "Cache Read:",
+    "unit": "{{value}} seconds"
+  },
+  "thinking": {
+    "title": "Claude's Thinking Process"
+  },
+  "command": {
+    "execution": "Command Execution",
+    "command": "Command:",
+    "arguments": "Arguments:",
+    "status": "Status:",
+    "errorOutput": "Error Output",
+    "executionResult": "Execution Result"
+  },
+  "imageViewer": {
+    "cannotLoad": "Cannot load image",
+    "title": "Image",
+    "viewFullscreen": "View Fullscreen",
+    "downloadImage": "Download Image"
+  },
+  "codebaseContext": {
+    "title": "Codebase Context",
+    "analyzedFiles": "Analyzed Files:",
+    "contextWindow": "Context Window:",
+    "relevantFiles": "Relevant Files ({{count}} files)",
+    "andMoreFiles": "...and {{count}} more files"
+  },
+  "gitWorkflow": {
+    "title": "Git Workflow",
+    "status": "Status:",
+    "changedFiles": "Changed Files ({{count}} files)",
+    "viewDiff": "View Diff"
+  },
+  "webSearch": {
+    "title": "Web Search Results",
+    "query": "Search Query:",
+    "duration": "Search Duration",
+    "results": "Search Results ({{count}} results):"
+  },
+  "mcp": {
+    "title": "MCP Tool Call",
     "parameters": "Parameters",
-    "error": "Error",
-    "gitWorkflow": "Git Workflow",
-    "changedFiles": "Changed Files",
-    "viewDiff": "View Diff",
-    "todoListUpdate": "Todo List Update",
-    "currentStatus": "Current Status",
-    "pathCopy": "Copy Path",
-    "codeCopy": "Copy Code",
-    "resultCopy": "Copy Result",
+    "error": "Error:",
+    "result": "Execution Result"
+  },
+  "structuredPatch": {
+    "title": "File Changes (Patch)",
+    "filePath": "File Path:",
+    "changeStatistics": "Change Statistics:",
+    "areasChanged": "{{count}} areas",
+    "changesFound": "changes found in",
+    "updatedFile": "Updated File:",
+    "updatedContent": "Updated File Content"
+  },
+  "fileEdit": {
+    "title": "File Edit Result",
+    "copyChangedResult": "Copy Changed Result",
+    "copyOriginalFile": "Copy Original File",
+    "editType": "Edit Type",
+    "fullReplacement": "Full Replacement",
+    "partialReplacement": "Partial Replacement",
+    "userModified": "User Modified",
+    "hasModification": "Yes",
+    "noModification": "No"
+  },
+  "toolUse": {
+    "fileWriting": "File Writing",
+    "writtenContent": "Written Content",
+    "fileEditing": "File Editing",
+    "removedCode": "Removed Code",
+    "addedCode": "Added Code",
+    "inputParameters": "Tool Input Parameters",
+    "taskDescription": "📋 Task Description",
+    "detailedInstructions": "💬 Detailed Instructions"
+  },
+  "message": {
+    "copyMessage": "Copy Message",
+    "messagesCount": "{{count}} messages • "
+  },
+  "hardcoded": {
+    "lines": "lines",
     "copyPath": "Copy Path",
     "copyCode": "Copy Code",
-    "filesCount": "{{count}} files",
-    "copyChangedResult": "Copy Changed Result",
-    "editInfo": "Edit Info",
-    "changeType": "Change Type",
-    "searchResults": "Search Results",
-    "foundFiles": "Found Files",
-    "linesShown": "{{count}} lines",
-    "fileSearchResults": "File Search Results",
-    "claudeApiResponse": "Claude API Response",
-    "typeUnknown": "Type: unknown",
-    "type": "Type",
-    "unknownResultFormat": "Unknown result format",
-    "unknownContentType": "Unknown content type",
-    
-    "session": {
-      "title": "Session {{sessionId}}"
-    },
-    
-    "file": {
-      "lineRange": "{{startLine}}-{{endLine}} / {{totalLines}} lines",
-      "path": "File Path:",
-      "content": "Content:",
-      "startLine": "Start Line: {{startLine}}",
-      "showingLines": "Showing {{current}}/{{total}} lines",
-      "viewMoreLines": "View {{count}} more lines",
-      "structure": "File Structure",
-      "editResult": "File Edit Result",
-      "originalContent": "Original File Content",
-      "updatedContent": "Updated File Content",
-      "searchResults": "File Search Results",
-      "listWithCount": "File List ({{count}} files)"
-    },
-    
-    "chatHistory": {
-      "title": "Chat History",
-      "noValidMessages": "No valid chat messages.",
-      "titleWithCount": "Chat History ({{count}} messages)",
-      "userType": "User",
-      "assistantType": "Claude",
-      "parseError": "Chat History Parse Error",
-      "parseErrorMessage": "An error occurred while parsing chat data."
-    },
-    
-    "toolResult": {
-      "title": "Tool Execution Result",
-      "executionTime": "Execution Time",
-      "totalTokens": "Total Tokens",
-      "toolUsageCount": "Tool Usage Count",
-      "interruptedStatus": "Interrupted Status",
-      "tokenUsage": "Token Usage:",
-      "imageResult": "Image Result",
-      "noOutput": "No output",
-      "completedNoOutput": "Execution complete (no output)",
-      "executionStatus": "Execution Status",
-      "claudeApiResponse": "Claude API Response",
-      "toolId": "Tool ID",
-      "executionError": "Tool Execution Error"
-    },
-    
-    "output": {
-      "jsonOutput": "JSON Output",
-      "testResults": "Test Results",
-      "buildOutput": "Build Output",
-      "packageManagement": "Package Management",
-      "tableFormat": "Table Format Output",
-      "terminalOutput": "Terminal Output",
-      "stdout": "Output",
-      "error": "Error",
-      "imageResult": "Image Result",
-      "included": "Included",
-      "none": "None",
-      "noOutput": "No output",
-      "executionComplete": "Execution complete (no output)"
-    },
-    
-    "status": {
-      "interrupted": "Interrupted",
-      "completed": "Completed",
-      "execution": "Execution Status"
-    },
-    
-    "tokens": {
-      "input": "Input:",
-      "output": "Output:",
-      "cacheCreation": "Cache Creation:",
-      "cacheRead": "Cache Read:",
-      "unit": "{{value}} seconds"
-    },
-    
-    "thinking": {
-      "title": "Claude's Thinking Process"
-    },
-    
-    "command": {
-      "execution": "Command Execution",
-      "command": "Command:",
-      "arguments": "Arguments:",
-      "status": "Status:",
-      "errorOutput": "Error Output",
-      "executionResult": "Execution Result"
-    },
-    
-    "imageViewer": {
-      "cannotLoad": "Cannot load image",
-      "title": "Image",
-      "viewFullscreen": "View Fullscreen",
-      "downloadImage": "Download Image"
-    },
-    
-    "codebaseContext": {
-      "title": "Codebase Context",
-      "analyzedFiles": "Analyzed Files:",
-      "contextWindow": "Context Window:",
-      "relevantFiles": "Relevant Files ({{count}} files)",
-      "andMoreFiles": "...and {{count}} more files"
-    },
-    
-    "gitWorkflow": {
-      "title": "Git Workflow",
-      "status": "Status:",
-      "changedFiles": "Changed Files ({{count}} files)",
-      "viewDiff": "View Diff"
-    },
-    
-    "webSearch": {
-      "title": "Web Search Results",
-      "query": "Search Query:",
-      "duration": "Search Duration",
-      "results": "Search Results ({{count}} results):"
-    },
-    
-    "mcp": {
-      "title": "MCP Tool Call",
-      "parameters": "Parameters",
-      "error": "Error:",
-      "result": "Execution Result"
-    },
-    
-    "structuredPatch": {
-      "title": "File Changes (Patch)",
-      "filePath": "File Path:",
-      "changeStatistics": "Change Statistics:",
-      "areasChanged": "{{count}} areas",
-      "changesFound": "changes found in",
-      "updatedFile": "Updated File:",
-      "updatedContent": "Updated File Content"
-    },
-    
-    "fileEdit": {
-      "title": "File Edit Result",
-      "copyChangedResult": "Copy Changed Result",
-      "copyOriginalFile": "Copy Original File",
-      "editType": "Edit Type",
-      "fullReplacement": "Full Replacement",
-      "partialReplacement": "Partial Replacement",
-      "userModified": "User Modified",
-      "hasModification": "Yes",
-      "noModification": "No"
-    },
-    
-    "toolUse": {
-      "fileWriting": "File Writing",
-      "writtenContent": "Written Content",
-      "fileEditing": "File Editing",
-      "removedCode": "Removed Code",
-      "addedCode": "Added Code",
-      "inputParameters": "Tool Input Parameters",
-      "taskDescription": "📋 Task Description",
-      "detailedInstructions": "💬 Detailed Instructions"
-    },
-    
-    "gitWorkflow": {
-      "title": "Git Workflow",
-      "status": "Status:",
-      "changedFiles": "Changed Files ({{count}} files)",
-      "viewDiff": "View Diff"
-    },
-    
-    "webSearch": {
-      "title": "Web Search Results",
-      "query": "Search Query:",
-      "duration": "Search Duration",
-      "results": "Search Results ({{count}} results):"
-    },
-    
-    "codebaseContext": {
-      "title": "Codebase Context",
-      "analyzedFiles": "Analyzed Files:",
-      "contextWindow": "Context Window:",
-      "relevantFiles": "Relevant Files ({{count}} files)",
-      "andMoreFiles": "...and {{count}} more files"
-    },
-    
-    "structuredPatch": {
-      "title": "File Changes (Patch)",
-      "filePath": "File Path:",
-      "changeStatistics": "Change Statistics:",
-      "areasChanged": "{{count}} areas",
-      "changesFound": "changes found in",
-      "updatedFile": "Updated File:",
-      "updatedContent": "Updated File Content"
-    },
-    
-    "fileEdit": {
-      "title": "File Edit Result",
-      "copyChangedResult": "Copy Changed Result",
-      "copyOriginalFile": "Copy Original File",
-      "editType": "Edit Type",
-      "fullReplacement": "Full Replacement",
-      "partialReplacement": "Partial Replacement",
-      "userModified": "User Modified",
-      "hasModification": "Yes",
-      "noModification": "No"
-    },
-    
-    "command": {
-      "execution": "Command Execution",
-      "command": "Command:",
-      "arguments": "Arguments:",
-      "status": "Status:",
-      "errorOutput": "Error Output",
-      "executionResult": "Execution Result"
-    },
-    
-    "message": {
-      "copyMessage": "Copy Message",
-      "messagesCount": "{{count}} messages • "
-    }
+    "copyResult": "Copy Result",
+    "changes": "Changes",
+    "copyAfterCode": "Copy After Code",
+    "visualView": "Visual View",
+    "advancedAnalysis": "Advanced Analysis"
   }
 }

@@ -1,8 +1,9 @@
 import type { ClaudeMessage } from "../types";
+import i18n from "../i18n";
 
 export const formatTime = (timestamp: string) => {
   try {
-    return new Date(timestamp).toLocaleTimeString("ko-KR", {
+    return new Date(timestamp).toLocaleTimeString(i18n.language, {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",

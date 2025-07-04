@@ -33,7 +33,10 @@
     "messages": "消息：{{current}} 条",
     "messagesTotal": "消息：{{current}} / {{total}} 条",
     "sessionTokens": "当前会话令牌：{{count, number}} 个",
-    "projectTokens": "项目令牌：{{count, number}} 个"
+    "projectTokens": "项目令牌：{{count, number}} 个",
+    "interrupted": "已中断",
+    "completed": "已完成",
+    "execution": "执行状态"
   },
   "content": {
     "selectSession": "请选择一个会话",
@@ -224,5 +227,155 @@
   "upToDate": {
     "title": "已是最新版本",
     "message": "当前版本 {{version}} 为最新版本。"
+  },
+
+  "toolResult": {
+    "title": "工具执行结果",
+    "executionTime": "执行时间",
+    "totalTokens": "总令牌",
+    "toolUsageCount": "工具使用次数",
+    "interruptedStatus": "中断状态",
+    "tokenUsage": "令牌使用量:",
+    "imageResult": "图片结果",
+    "noOutput": "无输出",
+    "completedNoOutput": "执行完成 (无输出)",
+    "executionStatus": "执行状态",
+    "claudeApiResponse": "Claude API 响应",
+    "toolId": "工具 ID",
+    "executionError": "工具执行错误"
+  },
+  "session": {
+    "title": "会话 {{sessionId}}"
+  },
+  "file": {
+    "lineRange": "{{startLine}}-{{endLine}} / {{totalLines}} 行",
+    "path": "文件路径：",
+    "content": "内容：",
+    "startLine": "起始行：{{startLine}}",
+    "showingLines": "显示 {{current}}/{{total}} 行",
+    "viewMoreLines": "查看更多 {{count}} 行",
+    "structure": "文件结构",
+    "editResult": "文件编辑结果",
+    "originalContent": "原始文件内容",
+    "updatedContent": "更新后的文件内容",
+    "searchResults": "文件搜索结果",
+    "listWithCount": "文件列表 ({{count}} 个文件)"
+  },
+  "chatHistory": {
+    "title": "聊天历史",
+    "noValidMessages": "没有有效的聊天消息。",
+    "titleWithCount": "聊天历史 ({{count}} 条消息)",
+    "userType": "用户",
+    "assistantType": "Claude",
+    "parseError": "聊天历史解析错误",
+    "parseErrorMessage": "解析聊天数据时发生错误。"
+  },
+  "output": {
+    "jsonOutput": "JSON 输出",
+    "testResults": "测试结果",
+    "buildOutput": "构建输出",
+    "packageManagement": "包管理",
+    "tableFormat": "表格格式输出",
+    "terminalOutput": "终端输出",
+    "stdout": "输出",
+    "error": "错误",
+    "imageResult": "图片结果",
+    "included": "包含",
+    "none": "无",
+    "noOutput": "无输出",
+    "executionComplete": "执行完成 (无输出)"
+  },
+  "tokens": {
+    "input": "输入：",
+    "output": "输出：",
+    "cacheCreation": "缓存创建：",
+    "cacheRead": "缓存读取：",
+    "unit": "{{value}} 秒"
+  },
+  "thinking": {
+    "title": "Claude 的思考过程"
+  },
+  "command": {
+    "execution": "命令执行",
+    "command": "命令：",
+    "arguments": "参数：",
+    "status": "状态：",
+    "errorOutput": "错误输出",
+    "executionResult": "执行结果"
+  },
+  "imageViewer": {
+    "cannotLoad": "无法加载图片",
+    "title": "图片",
+    "viewFullscreen": "全屏查看",
+    "downloadImage": "下载图片"
+  },
+  "codebaseContext": {
+    "title": "代码库上下文",
+    "analyzedFiles": "已分析文件：",
+    "contextWindow": "上下文窗口：",
+    "relevantFiles": "相关文件 ({{count}} 个文件)",
+    "andMoreFiles": "...还有 {{count}} 个文件"
+  },
+  "gitWorkflow": {
+    "title": "Git 工作流",
+    "status": "状态：",
+    "changedFiles": "变更文件 ({{count}} 个文件)",
+    "viewDiff": "查看差异"
+  },
+  "webSearch": {
+    "title": "网络搜索结果",
+    "query": "搜索查询：",
+    "duration": "搜索耗时",
+    "results": "搜索结果 ({{count}} 个结果)："
+  },
+  "mcp": {
+    "title": "MCP 工具调用",
+    "parameters": "参数",
+    "error": "错误：",
+    "result": "执行结果"
+  },
+  "structuredPatch": {
+    "title": "文件变更 (补丁)",
+    "filePath": "文件路径：",
+    "changeStatistics": "变更统计：",
+    "areasChanged": "{{count}} 个区域",
+    "changesFound": "发现变更",
+    "updatedFile": "更新的文件：",
+    "updatedContent": "更新的文件内容"
+  },
+  "fileEdit": {
+    "title": "文件编辑结果",
+    "copyChangedResult": "复制变更结果",
+    "copyOriginalFile": "复制原始文件",
+    "editType": "编辑类型",
+    "fullReplacement": "完全替换",
+    "partialReplacement": "部分替换",
+    "userModified": "用户修改",
+    "hasModification": "是",
+    "noModification": "否"
+  },
+  "toolUse": {
+    "fileWriting": "文件写入",
+    "writtenContent": "写入内容",
+    "fileEditing": "文件编辑",
+    "removedCode": "删除的代码",
+    "addedCode": "添加的代码",
+    "inputParameters": "工具输入参数",
+    "taskDescription": "📋 任务描述",
+    "detailedInstructions": "💬 详细说明"
+  },
+  "message": {
+    "copyMessage": "复制消息",
+    "messagesCount": "{{count}} 条消息 • "
+  },
+  "hardcoded": {
+    "lines": "行",
+    "copyPath": "复制路径",
+    "copyCode": "复制代码",
+    "copyResult": "复制结果",
+    "changes": "变更",
+    "copyAfterCode": "复制修改后代码",
+    "visualView": "可视化视图",
+    "advancedAnalysis": "高级分析"
   }
 }

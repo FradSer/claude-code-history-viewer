@@ -19,7 +19,7 @@ export const FileContent = ({
   fileData: Record<string, unknown>;
   title: string;
 }) => {
-  const { t } = useTranslation(['ui']);
+  const { t } = useTranslation(['ui', 'common']);
   const { renderCopyButton } = useCopyButton();
   const { isDarkMode } = useTheme();
   const content = typeof fileData.content === "string" ? fileData.content : "";
@@ -208,7 +208,7 @@ export const FileContent = ({
                     </>
                   ) : (
                     <>
-                      <span>{t("common.expand")} ({contentLines.length}{t("hardcoded.lines")}) ▼</span>
+                      <span>{t("common.expand")} ({contentLines.length}{t("hardcoded.lines")})</span>
                     </>
                   )}
                 </button>

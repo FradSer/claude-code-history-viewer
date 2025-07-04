@@ -31,7 +31,7 @@ export const ProjectTree: React.FC<ProjectTreeProps> = ({
   onSessionSelect,
   isLoading,
 }) => {
-  const { t } = useTranslation(['ui']);
+  const { t, i18n } = useTranslation(['ui']);
   const [expandedProject, setExpandedProject] = useState("");
 
   const formatTimeAgo = (dateStr: string) => {
@@ -50,7 +50,7 @@ export const ProjectTree: React.FC<ProjectTreeProps> = ({
       } else if (diffDays < 7) {
         return t('ui:projectTree.timeAgo.days', { count: diffDays });
       } else {
-        return date.toLocaleDateString("ko-KR", {
+        return date.toLocaleDateString(i18n.language, {
           month: "short",
           day: "numeric",
         });

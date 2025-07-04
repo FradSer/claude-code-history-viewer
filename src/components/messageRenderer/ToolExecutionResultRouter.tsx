@@ -238,7 +238,12 @@ export const ToolExecutionResultRouter: React.FC<
     !toolResult.stdout &&
     !toolResult.stderr
   ) {
-    return <StringRenderer result={toolResult.content} />;
+    return (
+      <StringRenderer
+        result={toolResult.content as string}
+        title={toolResult.title as string}
+      />
+    );
   }
 
   // Handle generic structured results with various properties
@@ -271,7 +276,11 @@ export const ToolExecutionResultRouter: React.FC<
       hasError={hasError as boolean}
     >
       <Renderer.Header
-        title={t("toolResult.title")}
+        title={
+          typeof toolResult === "object" && toolResult.title
+            ? t(toolResult.title as string)
+            : t("toolResult.title")
+        }
         titleClassName={cn(COLORS.semantic.success.text)}
         icon={<Check className={cn("w-4 h-4", COLORS.semantic.success.icon)} />}
       />

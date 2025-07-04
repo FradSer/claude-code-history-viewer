@@ -16,7 +16,11 @@ export const FallbackRenderer = ({ toolResult }: Props) => {
       className={cn(COLORS.ui.background.primary, COLORS.ui.border.light)}
     >
       <Renderer.Header
-        title={t("toolResult.title")}
+        title={
+          toolResult.title
+            ? t(toolResult.title as string)
+            : t("toolResult.title")
+        }
         icon={<Check className={cn(COLORS.ui.text.muted)} />}
         titleClassName={cn(COLORS.ui.text.secondary)}
       />

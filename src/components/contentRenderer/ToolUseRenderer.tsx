@@ -109,7 +109,9 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
           <div className="flex items-center space-x-2">
             <FilePlus className={cn("w-4 h-4", COLORS.semantic.success.icon)} />
             <span className={cn("font-medium", COLORS.semantic.success.text)}>
-              {t("toolUse.fileWriting")}
+              {toolUse.title
+                ? t(toolUse.title as string)
+                : t("toolUse.fileWriting")}
             </span>
           </div>
           {toolId && (
@@ -154,7 +156,11 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
             <CheckCircle
               className={cn("w-4 h-4", COLORS.semantic.success.icon)}
             />
-            <span>{t("toolUse.writtenContent")}</span>
+            <span>
+              {toolUse.writtenContent
+                ? t(toolUse.writtenContent as string)
+                : t("toolUse.writtenContent")}
+            </span>
           </div>
           <div
             className={cn(
@@ -235,7 +241,7 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
             <span
               className={cn("font-bold text-medium", COLORS.semantic.info.text)}
             >
-              Task
+              {toolUse.title ? t(toolUse.title as string) : t("toolUse.task")}
             </span>
           </div>
           {toolId && (
@@ -261,7 +267,9 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
                   COLORS.semantic.info.text
                 )}
               >
-                {t("toolUse.taskDescription")}
+                {toolUse.taskDescription
+                  ? t(toolUse.taskDescription as string)
+                  : t("toolUse.taskDescription")}
               </div>
               <div
                 className={cn(
@@ -283,7 +291,9 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
                   COLORS.semantic.info.text
                 )}
               >
-                {t("toolUse.detailedInstructions")}
+                {toolUse.detailedInstructions
+                  ? t(toolUse.detailedInstructions as string)
+                  : t("toolUse.detailedInstructions")}
               </div>
               <div
                 className={cn(
@@ -336,7 +346,11 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
       className={cn(COLORS.semantic.info.bg, COLORS.semantic.info.border)}
     >
       <Renderer.Header
-        title={toolName as string}
+        title={
+          toolUse.title
+            ? t(toolUse.title as string)
+            : (toolName as string)
+        }
         icon={
           <ToolIcon
             toolName={toolName as string}
@@ -368,7 +382,9 @@ export const ToolUseRenderer = ({ toolUse }: Props) => {
               COLORS.ui.text.inverse
             )}
           >
-            {t("toolUse.inputParameters")}
+            {toolUse.inputParameters
+              ? t(toolUse.inputParameters as string)
+              : t("toolUse.inputParameters")}
           </div>
           <Highlight
             theme={themes.vsDark}

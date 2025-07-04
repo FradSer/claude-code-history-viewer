@@ -25,5 +25,8 @@
   "output": "출력:",
   "file": "파일",
   "collapse": "접기 ▲",
-  "expand": "펼치기 ▼"
+  "expand": "펼치기 ▼",
+  "toolResult": {
+    "title": "도구 결과"
+  }
 }

@@ -411,7 +411,11 @@ export const ClaudeToolResultItem = ({ toolResult, index }: Props) => {
       hasError={isError}
     >
       <Renderer.Header
-        title={t("toolResult.title")}
+        title={
+          toolResult.title
+            ? t(toolResult.title as string)
+            : t("toolResult.title")
+        }
         icon={<Check className={cn("w-4 h-4", COLORS.semantic.success.icon)} />}
         titleClassName={cn(COLORS.semantic.success.text)}
         rightContent={

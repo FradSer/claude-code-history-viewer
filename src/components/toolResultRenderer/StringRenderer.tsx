@@ -11,14 +11,25 @@ import { COLORS } from "../../constants/colors";
 
 type Props = {
   result: string;
+  title?: string;
 };
 
-export const StringRenderer = ({ result }: Props) => {
+export const StringRenderer = ({ result, title }: Props) => {
   const { t } = useTranslation();
   // 파일 트리나 디렉토리 구조인지 확인
   const isFileTree =
     result.includes("/") &&
     (result.includes("- ") || result.includes("├") || result.includes("└"));
+
+  const getTitle = () => {
+    if (title) {
+      return t(title);
+    }
+    if (isFileTree) {
+      return t("file.structure");
+    }
+    return t("toolResult.title");
+  };
 
   // 접기/펼치기 상태 관리
   const [isExpanded, setIsExpanded] = useState(false);
@@ -33,7 +44,7 @@ export const StringRenderer = ({ result }: Props) => {
   return (
     <Renderer className={cn(COLORS.tools.file.bg, COLORS.tools.file.border)}>
       <Renderer.Header
-        title={isFileTree ? t("file.structure") : t("toolResult.title")}
+        title={getTitle()}
         icon={
           isFileTree ? (
             <Folder className={cn(COLORS.tools.file.icon)} />
@@ -58,7 +69,7 @@ export const StringRenderer = ({ result }: Props) => {
                 </>
               ) : (
                 <>
-                  <span>{t("common.expand")} ({resultLines.length}{t("hardcoded.lines")}) ▼</span>
+                  <span>{t("common.expand")} ({resultLines.length}{t("hardcoded.lines")})</span>
                 </>
               )}
             </button>

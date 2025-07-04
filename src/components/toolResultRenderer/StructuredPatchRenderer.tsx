@@ -4,6 +4,7 @@ import { EnhancedDiffViewer } from "../EnhancedDiffViewer";
 import { FileContent } from "../FileContent";
 import { cn } from "../../utils/cn";
 import { COLORS } from "../../constants/colors";
+import { useMemo } from "react";
 
 type Props = {
   toolResult: Record<string, unknown>;
@@ -18,6 +19,12 @@ export const StructuredPatchRenderer = ({ toolResult }: Props) => {
   const patches = Array.isArray(toolResult.structuredPatch)
     ? toolResult.structuredPatch
     : [];
+
+  const title = useMemo(() => {
+    return toolResult.title
+      ? t(toolResult.title as string)
+      : t("structuredPatch.title");
+  }, [t, toolResult.title]);
 
   // Reconstruct old and new content from patches
   const reconstructDiff = () => {
@@ -66,7 +73,7 @@ export const StructuredPatchRenderer = ({ toolResult }: Props) => {
       <div className="flex items-center space-x-2 mb-2">
         <RefreshCw className={cn("w-4 h-4", COLORS.tools.task.icon)} />
         <span className={cn("font-medium", COLORS.tools.task.text)}>
-          {t("structuredPatch.title")}
+          {title}
         </span>
       </div>
 
